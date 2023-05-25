@@ -115,6 +115,9 @@ class User_model extends CI_Model {
         $this->db->from('users');
         $this->db->where('mail',$email);
         $this->db->where('mdp',sha1($pass));
+        $this->db->where('etat !=','S');
+        $this->db->where('etat !=','B');
+        // $this->db->where('date_exp <',date('Y-m-d H:i:s'));
         
         $query = $this->db->get();
 
@@ -157,6 +160,14 @@ class User_model extends CI_Model {
         $this->db->where('id',$id);
         
         return $this->db->update('users');
+    }
+
+    public function check_date_exp($id)
+    {
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('id_user',$id);
+        $this->db->where('date_exp <',date('Y-m-d H:i:s'));
     }
 
     // role setter

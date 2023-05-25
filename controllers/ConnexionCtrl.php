@@ -27,85 +27,64 @@ class ConnexionCtrl extends CI_Controller {
 		// si la validation se passe bien
 		else
 		{	
-			var_dump($_POST);
+			// var_dump($_POST);
 			// demander si l'utilisateur existe
 			// demander si c'est le bon login + mot de passe
 			$login = $this->input->post('login');
 			$mdp = $this->input->post('password');
 
-			$user = $this->user->get(NULL,NULL,NULL,$login,$mdp);
+			$user = $this->user->get($login,$mdp);
 
-			var_dump($user==NULL,sha1($mdp));
+			// var_dump($user==NULL,sha1($mdp));
+			// si l'utilisateur est vide
+			if ($user === NULL) {
 
-			if ($user==NULL) {
+				$this->session->set_flashdata('msg', 'Login ou mot de passe incorrecte');
+				
+				$this->load->view('login');
+				
+			} else {
+				// verifier la date d'expiration du password utilisateur
+				$exp = $this->check_date_exp($user[0]->id_user);
+				// si non ok rediriger l'utilisateur vers la page de reinitialisation
+				if ($exp == false) {
+					redirect('');// reinitialisation
+				}
+
 				// sinon on le renvoie a la page de connexion
 				// avec message d'erreur 
 				// login ou mot de passe incorrecte
-				$this->session->set_flashdata('msg', 'Login ou mot de passe incorrecte');
-
-				$this->load->view('partials/head');
-				$this->load->view('connexion/login');
-				$this->load->view('partials/foot');
-
-			} else {
+				// redirection vers la page d'accueil
+				// redirect('');
 				
 				echo "Utilisateur authentifié avec succes \n";
 				echo "Page succes";
-				// redirect('');
 			}
 			
-			// si c'est bon on le connecte
-			// page de succes
-			// $this->load->view('formsuccess');
 		}
 	}
 
-	public function reinitialisation()
-	{
-		$this->load->view('partials/head');
-		$this->load->view('connexion/reinitialisation');
-		$this->load->view('partials/foot');
+	public function check_date_exp($id){
+		$user = $this->user->check_date_exp($id);
+
+		if ($user != NULL) {
+			return true;
+		} else {
+			return false;
+		}
+		
+		return false;
+
 	}
+
 
 	// vue de reinitialisation de l'utilisateur
-	public function inscription()
+	public function add_user()
 	{
-		$this->load->view('partials/head');
-		$this->load->view('connexion/inscription');
-		$this->load->view('partials/foot');
+		$this->load->view('inscription');
 	}
 
-	// operation de validation d'un utilisateur qui tente de se connecter
-	public function validate_user()
-	{
-		// execution fonction de validation
-		$this->login_form_validation_request();
-
-		// si la validation ne se passe pas bien
-		if ($this->form_validation->run() == FALSE)
-		{
-			// page + erreurs
-			// $this->load->view('myform');
-			echo "Echec authentification utilisateur ";
-
-		}
-		// si la validation se passe bien
-		else
-		{	
-			// demander si l'utilisateur existe
-			var_dump($_POST);
-
-			// demander si c'est le bon login + mot de passe
-			// si c'est bon on le connecte
-			// sinon on le renvoie a la page de connexion
-			// avec message d'erreur 
-			// login ou mot de passe incorrecte
-			echo "Utilisateur authentifié avec succes";
-			// page de succes
-			// $this->load->view('formsuccess');
-		}
-	}
-
+	
 	// operation validation du formulaire de connexion
 	public function login_form_validation_request()
 	{
@@ -129,15 +108,15 @@ class ConnexionCtrl extends CI_Controller {
 	}
 
 	// operation 
-	public function user_connected()
-	{
-		$this->load->view('welcome_message');
-	}
+	// public function user_connected()
+	// {
+	// 	$this->load->view('welcome_message');
+	// }
 
-	public function redirect()
-	{
-		$this->load->view('welcome_message');
-	}
+	// public function redirect()
+	// {
+	// 	$this->load->view('welcome_message');
+	// }
 
 
 }

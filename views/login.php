@@ -6,7 +6,7 @@
                 <!-- Fonction d'affichage des erreurs -->
                 
                 <!-- Fonction de redirection chemin relatif -->
-                <?php echo form_open('connexionctrl/'); ?>
+                <?php echo form_open('ConnexionCtrl/'); ?>
                     <div class="form-group">
                         <h1 class="text-center">LOGO</h1>
                     </div>
@@ -47,7 +47,7 @@
                     </div>
                 </form>
                 <div class="text-center">
-                    <a href="<?php echo site_url('connexionctrl/reinitialisation')?>">Mot de Passe Oublié ?</a>
+                    <a href="<?php echo site_url('ConnexionCtrl/reinitialisation')?>">Mot de Passe Oublié ?</a>
                 </div>
 
             </div>

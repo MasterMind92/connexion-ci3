@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-center align-items-center" style="height:100vh">
             <div class="col-12 col-md-8 col-lg-4">
-                <form method="post" action="<?php echo base_url();?>">
+                <form method="post" action="<?php echo base_url;?>">
                     <div class="form-group">
                         <h1 class="text-center">LOGO</h1>
                     </div>
