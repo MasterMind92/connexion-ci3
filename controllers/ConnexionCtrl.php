@@ -1,6 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+// ligne d'inclusion d'un autre controller
+// include_once (dirname(__FILE__) . "/controller1.php");
+
+// Exemple d'inclusion d'un controller dans un autre 
+// class Mycontroller extends Controller1 {
+
+//     public function __construct() {
+//         parent::__construct();
+//     }
+// }
+
 class ConnexionCtrl extends CI_Controller {
 
 	function __construct()
