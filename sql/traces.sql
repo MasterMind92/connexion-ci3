@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 27, 2023 at 05:22 PM
+-- Generation Time: May 28, 2023 at 03:52 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -38,6 +38,8 @@ CREATE TABLE `traces` (
   `etat_log` set('A','I','S') DEFAULT NULL,
   `ip_adress` varchar(32) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
   `terminal` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
