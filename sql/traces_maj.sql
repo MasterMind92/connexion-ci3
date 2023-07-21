@@ -1,0 +1,2 @@
+-- MISE A JOUR DU 28-05-2023
+ALTER TABLE `traces` ADD `updated_at` DATETIME NULL DEFAULT NULL AFTER `created_at`, ADD `deleted_at` DATETIME NULL DEFAULT NULL AFTER `updated_at`; 
