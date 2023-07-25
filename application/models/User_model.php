@@ -30,7 +30,7 @@ class User_model extends CI_Model {
     {   
         $this->db->set('nom', $array['nom']);
         $this->db->set('prenoms', $array['prenoms']);
-        $this->db->set('mail', $array['email']);
+        $this->db->set('email', $array['email']);
         $this->db->set('phone', $array['tel']);
         $this->db->set('mdp', sha1($array['mdp']));
         $this->db->set('role', $array['role']);
@@ -113,8 +113,8 @@ class User_model extends CI_Model {
 
         $this->db->select('*');
         $this->db->from('users');
-        $this->db->where('mail',$email);
-        $this->db->where('mdp',sha1($pass));
+        $this->db->where('email',$email);
+        $this->db->where('pass',sha1($pass));
         $this->db->where('etat !=','S');
         $this->db->where('etat !=','B');
         // $this->db->where('date_exp <',date('Y-m-d H:i:s'));

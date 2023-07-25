@@ -19,7 +19,7 @@ class ConnexionCtrl extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
-		$this->load->model('Users_model','user');
+		$this->load->model('User_model','user');
 	}
 
 	public function index()
@@ -32,7 +32,7 @@ class ConnexionCtrl extends CI_Controller {
 		if ($this->form_validation->run() == FALSE)
 		{
 			$this->load->view('partials/head');
-			$this->load->view('connexion/login');
+			$this->load->view('login');
 			$this->load->view('partials/foot');
 		}
 		// si la validation se passe bien
@@ -59,7 +59,7 @@ class ConnexionCtrl extends CI_Controller {
 				$exp = $this->check_date_exp($user[0]->id_user);
 				// si non ok rediriger l'utilisateur vers la page de reinitialisation
 				if ($exp == false) {
-					redirect('');// reinitialisation
+					redirect('Welcome');// reinitialisation
 				}
 
 				// sinon on le renvoie a la page de connexion
@@ -68,8 +68,6 @@ class ConnexionCtrl extends CI_Controller {
 				// redirection vers la page d'accueil
 				// redirect('');
 				
-				echo "Utilisateur authentifié avec succes \n";
-				echo "Page succes";
 			}
 			
 		}

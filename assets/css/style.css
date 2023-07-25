@@ -1,0 +1,73 @@
+/* REGLES CSS THEME */
+
+.txt-white {
+    color: #fff;
+}
+
+.yellow-bg{
+    background: #f9b233;
+}
+
+.green-bg{
+    background: #9bc451;
+}
+
+.maroon-bg{
+    background: #d09c61;
+}
+
+
+/* REGLE CSS PARALLAX */
+
+.parallax-1 {
+    background: url(../img/culture-2.jpg) fixed center center/cover;
+    
+    /* background-color: rgba(0, 0, 0, 0);
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-image: url("../img/culture-2.jpg");
+    background-size: cover;
+    background-origin: padding-box;
+    background-clip: border-box; */
+}
+
+.parallax-2 {
+    background: url(../img/culture-3.jpg) fixed center center/cover;
+}
+
+.gmaps {
+    background: url(../img/gmaps.jpg) scroll center center/cover;
+}
+
+
+/* REGLES CSS DIMENSION */
+
+.menu_space {
+    padding: 0 2.6041vw;
+}
+
+.encart-height {
+    max-height: 844px;
+    height: 32vw;
+    min-height: 400px;
+}
+
+.encart-height-2 {
+    max-height: 474px;
+    height: 24.6875vw;
+    min-height: 250px;
+}
+
+.encart-height-3 {
+    max-height: 679px;
+    height: 35.3645vw;
+    min-height: 250px;
+}
+
+
+/* REGLES CSS ETATS */
+
+
+/* REGLES CSS MEDIA QUERY */

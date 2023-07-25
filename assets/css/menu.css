@@ -1,0 +1,22 @@
+#menu-principal {
+    background: transparent;
+    width: 100%;
+}
+
+#menu-principal li.nav-item {
+    padding: 8px 15px;
+    color: #fff;
+}
+
+#menu-principal li.nav-item a {
+    color: #fff;
+}
+
+#menu-container {
+    position: absolute;
+    top: 0;
+    left: 8.5%;
+    /* translate: (-50%, 0%); */
+    width: 100%;
+    z-index: 10;
+}
