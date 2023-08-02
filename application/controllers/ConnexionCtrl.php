@@ -31,9 +31,9 @@ class ConnexionCtrl extends CI_Controller {
 		// si la validation ne se passe pas bien
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->load->view('partials/head');
+			
 			$this->load->view('login');
-			$this->load->view('partials/foot');
+			
 		}
 		// si la validation se passe bien
 		else

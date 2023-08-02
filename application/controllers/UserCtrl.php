@@ -29,42 +29,74 @@ class UserCtrl extends CI_Controller {
 
 	public function index()
 	{	
-		$users = $this->user->get_users();
+		$users = $this->user->get_all_users();
 
-		// var_dump($users);
-
-		// echo "page index utilisateur";
-		$this->load->view('partials/head');
-		$this->load->view('partials/admin/sidebar');
 		$this->load->view('users/index',['users'=>$users]);
-		$this->load->view('partials/foot');
+		
 	}
 
 	// vue de reinitialisation de l'utilisateur
 	public function add()
-	{
-		$this->load->view('partials/head');
-		$this->load->view('partials/admin/sidebar');
-		$this->load->view('users/add_users');
-		$this->load->view('partials/foot');
+	{	
+		$this->user_validation_request();
+
+		 // si la validation ne se passe pas bien
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('users/add_users');
+		}
+		else
+		{	
+			// si la validation se passe bien
+			//enregistrement des variable
+			$data = [
+			'lname' => $this->input->post('nom'),
+			'fname' => $this->input->post('prenoms'),
+			'email' => $this->input->post('email'),
+			'pass' => $this->input->post('password'),
+			'login' => $this->input->post('login'),
+			'tel' => $this->input->post('phone'),
+			'role' => $this->input->post('role'),
+			'etat' => $this->input->post('etat'),
+			];
+
+			// Exécution de la methode d'insertion
+			$add_response = $this->user->add($data);
+
+			// Mise en place du message
+			if ($add_response != NULL) {
+				$this->session->set_flashdata('msg', 'Infos utilisateur enregistré avec succès');
+			} else {
+				$this->session->set_flashdata('msg', 'Echec enregistrement utilisateur');
+			}
+
+			$this->load->view('partials/head');
+			$this->load->view('partials/admin/sidebar');
+			$this->load->view('users/add_users');
+			$this->load->view('partials/foot');
+			
+			// si c'est bon on le connecte
+			// page de succes
+			// $this->load->view('formsuccess');
+		}
+		
 	}
 
 	// vue d'ajout d'un utilisateur
 	public function modify($id)
 	{	
-		$user = $this->user->get($id);
+		$user = $this->user->get_user_by_id($id);
 
 		// var_dump($user);
 
-		$this->user_update_validation_request();
+		$this->user_validation_request();
 
 		 // si la validation ne se passe pas bien
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->load->view('partials/head');
-			$this->load->view('partials/admin/sidebar');
-			$this->load->view('users/show_users',['user'=>$user[0]]);
-			$this->load->view('partials/foot');
+			
+			$this->load->view('blank',['view'=>'users/show_users','user'=>$user[0]]);
+			
 		}
 		// si la validation se passe bien
 		else
@@ -72,13 +104,15 @@ class UserCtrl extends CI_Controller {
 			// var_dump($_POST);
 			// demander si l'utilisateur existe
 			// demander si c'est le bon login + mot de passe
-			$lname = $this->input->post('nom');
-			$fname = $this->input->post('prenoms');
-			$email = $this->input->post('email');
-			$pass = $this->input->post('password');
-			$login = $this->input->post('login');
-			$role = $this->input->post('role');
-			$etat = $this->input->post('etat');
+			$data = [
+			'lname' => $this->input->post('nom'),
+			'fname' => $this->input->post('prenoms'),
+			'email' => $this->input->post('email'),
+			'pass' => $this->input->post('password'),
+			'login' => $this->input->post('login'),
+			'role' => $this->input->post('role'),
+			'etat' => $this->input->post('etat'),
+			];
 
 			$update_response = $this->user->update($id,$lname,$fname,$email,$login,$pass,$role,$etat);
 
@@ -105,7 +139,7 @@ class UserCtrl extends CI_Controller {
 	}
 
 	// operation validation du formulaire de connexion
-	public function user_update_validation_request()
+	public function user_validation_request()
 	{
 		// lname validation
 		$this->form_validation->set_rules('prenoms', 'Prenoms', 'required|min_length[3]',

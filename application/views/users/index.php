@@ -1,3 +1,6 @@
+<?php $this->load->view('partials/head');?>
+<?php $this->load->view('partials/admin/sidebar');?>
+
 <div id="main">
 
     <div class="wrapper">
@@ -47,7 +50,7 @@
                                     ];
                                 
 
-                                    switch ($value->etat) {
+                                    switch ($value->etat_user) {
                                         case 'A':
                                             $libelle['lib']="Actif";
                                             $libelle['fa_class']="fa fa-check";
@@ -80,11 +83,11 @@
                                 <td> <span class="<?php echo $libelle['txt_class'] ;?>"> <i class="<?php echo $libelle['fa_class'] ;?>"></i> <?php echo $libelle['lib'] ;?></span> </td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Button group">
-                                        <a class="btn btn-default" type="button" title="Activer utilisateur" href="<?php echo site_url('userctrl/activate_user/'.$value->id) ;?>" > <i class="fa fa-thumbs-up"></i> </a>
-                                        <a class="btn btn-secondary" type="button" title="Desactiver utilisateur" href="<?php echo site_url('userctrl/deactivate_user/'.$value->id) ;?>" > <i class="fa fa-thumbs-down"></i> </a>
-                                        <a class="btn btn-primary" type="button" title="Modifier utilisateur" href="<?php echo site_url('userctrl/modify/'.$value->id) ;?>" > <i class="fa fa-pen"></i> </a>
-                                        <!-- <a class="btn btn-success" type="button"  href="<?php #echo site_url('connexionctrl/modify/'.$value->id) ;?>" > <i class="fa fa-list"></i> </a> -->
-                                        <button class="btn btn-danger" id="delete_user" type="button" title="Bloquer l'utilisateur" data-id="<?php echo $value->id; ?>"> <i class="fa fa-trash"></i> </button>
+                                        <a class="btn btn-default" type="button" title="Activer utilisateur" href="<?php echo site_url('userctrl/activate_user/'.$value->id_user) ;?>" > <i class="fa fa-thumbs-up"></i> </a>
+                                        <a class="btn btn-secondary" type="button" title="Desactiver utilisateur" href="<?php echo site_url('userctrl/deactivate_user/'.$value->id_user) ;?>" > <i class="fa fa-thumbs-down"></i> </a>
+                                        <a class="btn btn-primary" type="button" title="Modifier utilisateur" href="<?php echo site_url('userctrl/modify/'.$value->id_user) ;?>" > <i class="fa fa-pen"></i> </a>
+                                        <!-- <a class="btn btn-success" type="button"  href="<?php #echo site_url('connexionctrl/modify/'.$value->id_user) ;?>" > <i class="fa fa-list"></i> </a> -->
+                                        <button class="btn btn-danger" id="delete_user" type="button" title="Bloquer l'utilisateur" data-id="<?php echo $value->id_user; ?>"> <i class="fa fa-trash"></i> </button>
                                     </div>    
                                 </td>
                             </tr>
@@ -122,3 +125,5 @@
         </div>
     </div>
 </div>
+
+<?php $this->load->view('partials/foot');?>

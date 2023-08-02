@@ -22,6 +22,25 @@ btn_delete.click(function(e) {
     }
 });
 
+$('#with-input').on('click', function() {
+    swal({
+        title: "An input!",
+        text: "Write something:",
+        input: "text",
+        showCancelButton: true,
+        closeOnConfirm: false,
+        inputPlaceholder: "Write something"
+    }).then(function(inputValue) {
+        if (inputValue === false) return false;
+
+        if (inputValue === "") {
+            return false;
+        }
+
+        swal("Awesome!", "You wrote: " + inputValue, "success");
+    });
+});
+
 
 // initialisation du datatable use
 

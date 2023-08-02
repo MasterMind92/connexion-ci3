@@ -1,3 +1,5 @@
+<?php $this->load->view('partials/head');?>
+<?php $this->load->view('partials/admin/sidebar');?>
 <div id="main">
     <div class="wrapper">
 
@@ -7,13 +9,13 @@
             <div class="row justify-content-center align-items-center" style="height:80vh">
                 <div class="col-12 col-md-10 col-lg-8">
                     <?php if( $this->session->flashdata('msg')):?>
-                    <div class="alert alert-info" role="alert">
+                    <div class="alert alert-info text-center" role="alert">
                         <?php echo $this->session->flashdata('msg'); ?>
                     </div>
                     <?php endif;?>
 
                     <?php if(!empty(validation_errors())):?>
-                    <div class="alert alert-warning" role="alert">
+                    <div class="alert alert-warning text-center" role="alert">
                         <?php echo validation_errors(); ?>
                     </div>
                     <?php endif;?>
@@ -22,7 +24,7 @@
                         <!-- <a href="#" class="btn btn-primary" type="button">Text</a> -->
                     </div>
 
-                    <?php echo form_open('userctrl/add/'); ?>
+                    <?php echo form_open('userctrl/add'); ?>
                         <div class="form-group">
                             <h1 class="text-center">Ajouter un utilisateur</h1>
                         </div>
@@ -92,8 +94,7 @@
                                 <label for="role">Role Utilisateur</label>
                                 <select id="role" class="form-control" name="role">
                                     <option selected value="admin">Administrateur</option>
-                                    <option value="eleve">Eleve</option>
-                                    <option value="professeur">Professeur</option>
+                                    <option value="standard">Standard</option>
                                     <option value="employe">Employé</option>
                                 </select>
                             </div>
@@ -116,3 +117,5 @@
         </div>
     </div>
 </div>
+
+<?php $this->load->view('partials/foot');?>

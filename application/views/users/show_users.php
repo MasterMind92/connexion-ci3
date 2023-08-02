@@ -24,7 +24,7 @@
                     <!-- <a href="#" class="btn btn-primary" type="button">Text</a> -->
                 </div>
 
-                <?php echo form_open('userctrl/modify/'.$user->id); ?>
+                <?php echo form_open('userctrl/modify/'.$user->id_user); ?>
                     <!-- <form method="post" action="<?php #echo base_url();?>"> -->
                         <!-- <input type="hidden" name=""> -->
                         <div class="form-group">
@@ -95,8 +95,7 @@
                                 <label for="role">Role Utilisateur</label>
                                 <select id="role" class="form-control" name="role">
                                     <option selected value="admin">Administrateur</option>
-                                    <option value="eleve">Eleve</option>
-                                    <option value="professeur">Professeur</option>
+                                    <option value="standard">Standard</option>
                                     <option value="employe">Employé</option>
                                 </select>
                             </div>

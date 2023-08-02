@@ -28,11 +28,12 @@ class User_model extends CI_Model {
      */
     public function add($array)
     {   
-        $this->db->set('nom', $array['nom']);
-        $this->db->set('prenoms', $array['prenoms']);
+        $this->db->set('lname', $array['lname']);
+        $this->db->set('fname', $array['fname']);
         $this->db->set('email', $array['email']);
+        $this->db->set('login', $array['login']);
         $this->db->set('phone', $array['tel']);
-        $this->db->set('mdp', sha1($array['mdp']));
+        $this->db->set('pass', sha1($array['pass']));
         $this->db->set('role', $array['role']);
         $this->db->set('etat_user   ', 'A');
         $this->db->set('created_at', date('Y-m-d h:i:s'));
@@ -53,8 +54,8 @@ class User_model extends CI_Model {
      */
     public function update_etat($id,$etat)
     {
-        $this->db->set('etat', $etat);
-        $this->db->where('id', $id);
+        $this->db->set('etat_user', $etat);
+        $this->db->where('id_user', $id);
 
         return $this->db->update('users');
     }
@@ -98,6 +99,30 @@ class User_model extends CI_Model {
         return $query->result();
     }
 
+    /**
+     * Rechercher un utiliateur specifique
+     *
+     * @param mixed $email
+     * @param mixed $pass
+     * 
+     * @return object
+     * 
+     */
+    public function get_user_by_id($id)
+    {   
+
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('id_user',$id);
+        $this->db->where('etat_user !=','S');
+        $this->db->where('etat_user !=','B');
+        // $this->db->where('date_exp <',date('Y-m-d H:i:s'));
+        
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
 
     /**
      * Rechercher un utiliateur specifique
@@ -115,8 +140,8 @@ class User_model extends CI_Model {
         $this->db->from('users');
         $this->db->where('email',$email);
         $this->db->where('pass',sha1($pass));
-        $this->db->where('etat !=','S');
-        $this->db->where('etat !=','B');
+        $this->db->where('etat_user !=','S');
+        $this->db->where('etat_user !=','B');
         // $this->db->where('date_exp <',date('Y-m-d H:i:s'));
         
         $query = $this->db->get();
@@ -135,9 +160,9 @@ class User_model extends CI_Model {
      */
     public function delete($id)
     {
-        $this->db->where('id', $id);
+        $this->db->where('id_user', $id);
         $this->db->set('deleted_at', date('Y-m-d h:i:s'));
-        $this->db->set('etat','S');
+        $this->db->set('etat_user','S');
 
         return $this->db->update('users');
     }
@@ -146,8 +171,8 @@ class User_model extends CI_Model {
     // verification des etats
     public function is_such_state($id, $etat)
     {
-        $this->db->where('id',$id);
-        $this->db->where('etat',$etat);
+        $this->db->where('id_user',$id);
+        $this->db->where('etat_user',$etat);
         $query = $this->db->get('users');
         
         return $query->result();
@@ -156,8 +181,8 @@ class User_model extends CI_Model {
     // state setter
     public function set_state($id, $etat)
     {
-        $this->db->set('etat',$etat);
-        $this->db->where('id',$id);
+        $this->db->set('etat_user',$etat);
+        $this->db->where('id_user',$id);
         
         return $this->db->update('users');
     }
@@ -173,7 +198,7 @@ class User_model extends CI_Model {
     // role setter
     public function set_role($id, $role)
     {
-        $this->db->set('etat',$etat);
+        $this->db->set('etat_user',$etat);
         $this->db->where('role',$role);
         
         return $this->db->update('users');
@@ -182,7 +207,7 @@ class User_model extends CI_Model {
     // password setter
     public function set_password($id, $pass)
     {
-        $this->db->set('id',$id);
+        $this->db->set('id_user',$id);
         $this->db->where('role',sha1($pass));
         
         return $this->db->update('users');
