@@ -59,6 +59,7 @@ class ConnexionCtrl extends CI_Controller {
 				$exp = $this->check_date_exp($user[0]->id_user);
 				// si non ok rediriger l'utilisateur vers la page de reinitialisation
 				if ($exp == false) {
+					
 					redirect('Welcome');// reinitialisation
 				}
 

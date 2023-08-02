@@ -17,22 +17,40 @@ class ReinitCtrl extends CI_Controller {
 	function __construct()
 	{	
 		parent::__construct();
-		$this->load->helper(array('form', 'url'));
+		$this->load->helper(array('form', 'url','notif'));
 		$this->load->library('form_validation');
-		$this->load->model('Users_model','user');
+		$this->load->model('User_model','user');
 	}
 
     // formulaire envoie de mail
     public function index()
 	{   
         // envoyer lien de reinitialisation par email
-		$this->load->view('send_reinit_mail');
+		$this->load->view('connexion/send_reinit_mail');
 	}
 
     // formulaire de reinitialisation
     public function reinitialisation(){
         $this->load->view('reinitialisation');
     }
+
+	public function send_mail(){
+		// initialisation du message
+		$message = $this->input->post('message');
+		// initialisation du destinataire
+		$destinataire = $this->input->post('email');
+		//initialisation du sujet
+		$sujet = $this->input->post('subject');
+		// initialisation de l'API
+		$response = mailjet($destinataire, $subject, $message);
+
+		if (!empty($response)) {
+			$this->session->set_flashdata('msg',"E-mail envoyé");
+		} else {
+			$this->session->set_flashdata('msg',"Une erreur est survenue");
+		}
+
+	}
 
     // penser a une fonction pour generer un lien temporaire
 

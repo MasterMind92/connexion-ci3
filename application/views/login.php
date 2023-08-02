@@ -49,7 +49,7 @@
                     </div>
                 </form>
                 <div class="text-center">
-                    <a href="<?php echo site_url('ConnexionCtrl/reinitialisation')?>">Mot de Passe Oublié ?</a>
+                    <a href="<?php echo site_url('ReinitCtrl/')?>">Mot de Passe Oublié ?</a>
                 </div>
 
             </div>
