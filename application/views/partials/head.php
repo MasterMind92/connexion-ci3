@@ -19,3 +19,5 @@
         </style>
     </head>
     <body>
+
+    <?php $this->load->view('partials/menu')?>

@@ -5,7 +5,7 @@
 // pk : 4fd6a7d7b85f2f9046c8ae344d8d1b1d
 // sk : bb7d75e6604120eb8267b0d1cde72f65
 
-function mailjet($destinataire, $subject, $message)
+function mailjet($destinataire, $subject, $message,$app_name)
 {
     //
 
@@ -15,8 +15,8 @@ function mailjet($destinataire, $subject, $message)
         'Messages' => [
             [
                 'From' => [
-                    'Email' => "marc.dalo@sycapay.com",
-                    'Name' => "App"
+                    'Email' => "marc.dalo@webdev.ci",
+                    'Name' => $app_name 
                 ],
                 'To' => [
                     [
