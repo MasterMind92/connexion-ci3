@@ -1,4 +1,4 @@
-<?php $this->load->view('partials/head');?>
+<?php $this->load->view('partials/head-shop');?>
 <div class="wrapper my-4">
     <div class="container">
         <div class="row">
@@ -396,5 +396,5 @@
         </div>
     </div>
 </div>
-
+<?php $this->load->view('partials/footer-shop');?>
 <?php $this->load->view('partials/foot');?>

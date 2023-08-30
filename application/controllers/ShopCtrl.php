@@ -40,7 +40,7 @@ class ShopCtrl extends CI_Controller {
 	 */
     public function product_details()
 	{
-		$this->load->view('product_details');
+		$this->load->view('shop/product_details');
 	}
 
 

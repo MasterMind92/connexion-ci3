@@ -1,4 +1,4 @@
-<?php $this->load->view('partials/head');?>
+<?php $this->load->view('partials/head-shop');?>
 <div class="wrapper my-4">
     <div class="container">
         <div class="row">
@@ -91,7 +91,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="py-3"><a href="<?php echo base_url();?>products"><i class="fa fa-chevron-left"></i>  Continuer Mes Achats</a></div>
+                <div class="py-3"><a href="<?php echo site_url('ShopCtrl/show_all_product');?>"><i class="fa fa-chevron-left"></i>  Continuer Mes Achats</a></div>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="card">
@@ -122,7 +122,7 @@
                         </div>
                         <div class="row ">
                             <div class="col">
-                                <a href="<?php echo base_url();?>commande" class="btn btn-info btn-block" type="button"> <strong>COMMANDER</strong> </a>
+                                <a href="<?php echo site_url('ShopCtrl/commande');?>" class="btn btn-info btn-block" type="button"> <strong>COMMANDER</strong> </a>
                             </div>
                         </div>
                     </div>
@@ -169,4 +169,5 @@
         </div>
     </div>
 </div>
+<?php $this->load->view('partials/footer-shop');?>
 <?php $this->load->view('partials/foot');?>

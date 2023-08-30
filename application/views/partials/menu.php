@@ -15,14 +15,14 @@
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#login"><span><i class="fa fa-user"></i></span> Connexion </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"  href="<?php echo base_url();?>panier"><span><i class="fa fa-shopping-cart"></i></span> Panier <span class="text-info">(1)</span> </a>
+                        <a class="nav-link"  href="<?php echo site_url('ShopCtrl/panier');?>"><span><i class="fa fa-shopping-cart"></i></span> Panier <span class="text-info">(1)</span> </a>
                     </li>
                 </ul>
             </div>
         </nav>
         <!-- NAVBAR HEADER -->
         <nav class="navbar navbar-expand-sm navbar-light bg-light">
-            <a class="navbar-brand" href="<?php echo base_url();?>">Syca Marchand</a>
+            <a class="navbar-brand" href="<?php echo site_url('ShopCtrl/commande');?>">Syca Marchand</a>
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -80,10 +80,11 @@
                                     </div>  <!-- col-megamenu.// -->
                                 </div><!-- end col-3 -->
                             </div><!-- end row --> 
-                        </div> <!-- dropdown-mega-menu.// -->
+                        </div> 
+                        <!-- dropdown-mega-menu.// -->
                     </li>
                 </ul>
-                <form action="<?php echo base_url();?>search" method="get" class="form-inline my-2 my-lg-0">
+                <form action="<?php echo site_url('ShopCtrl/search');?>" method="get" class="form-inline my-2 my-lg-0">
                     <div class="input-group">
                         <input class="form-control" type="text" name="product" placeholder="Rechercher Produit">
                         <div class="input-group-append">

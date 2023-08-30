@@ -1,4 +1,4 @@
-<?php $this->load->view('partials/head');?>
+<?php $this->load->view('partials/head-shop');?>
     <!-- SLIDESHOW -->
     <div class="wrapper my-2">
         <div class="container">
@@ -44,12 +44,12 @@
                 <div class="col-12 col-md-6 col-lg-3">
                     <div class="card">
                         <div class="card-body p-0">
-                            <a href="<?php echo base_url();?>product/details">
+                            <a href="<?php echo site_url('ShopCtrl/product_details');?>">
                                 <img src="<?php echo base_url();?>assets/images/produits/shirt.jpg" alt="" class="img-fluid">
                             </a>
                         </div>
                         <div class="card-footer">
-                            <p class="card-text text-center"><a href="<?php echo base_url();?>product/details">Nom Produit</a></p>
+                            <p class="card-text text-center"><a href="<?php echo site_url('ShopCtrl/product_details');?>">Nom Produit</a></p>
                             <p class="card-text text-center">10 000 FCFA</p>
                         </div>
                     </div>
@@ -57,12 +57,12 @@
                 <div class="col-12 col-md-6 col-lg-3">
                     <div class="card">
                         <div class="card-body p-0">
-                            <a href="<?php echo base_url();?>product/details">
+                            <a href="<?php echo site_url('ShopCtrl/product_details');?>">
                                 <img src="<?php echo base_url();?>assets/images/produits/shirt.jpg" alt="" class="img-fluid">
                             </a>
                         </div>
                         <div class="card-footer">
-                            <p class="card-text text-center"><a href="<?php echo base_url();?>product/details">Nom Produit</a></p>
+                            <p class="card-text text-center"><a href="<?php echo site_url('ShopCtrl/product_details');?>">Nom Produit</a></p>
                             <p class="card-text text-center">10 000 FCFA</p>
                         </div>
                     </div>
@@ -70,12 +70,12 @@
                 <div class="col-12 col-md-6 col-lg-3">
                     <div class="card">
                         <div class="card-body p-0">
-                            <a href="<?php echo base_url();?>product/details">
+                            <a href="<?php echo site_url('ShopCtrl/product_details');?>">
                                 <img src="<?php echo base_url();?>assets/images/produits/shirt.jpg" alt="" class="img-fluid">
                             </a>
                         </div>
                         <div class="card-footer">
-                            <p class="card-text text-center"><a href="<?php echo base_url();?>product/details">Nom Produit</a></p>
+                            <p class="card-text text-center"><a href="<?php echo site_url('ShopCtrl/product_details');?>">Nom Produit</a></p>
                             <p class="card-text text-center">10 000 FCFA</p>
                         </div>
                     </div>
@@ -83,12 +83,12 @@
                 <div class="col-12 col-md-6 col-lg-3">
                     <div class="card">
                         <div class="card-body p-0">
-                            <a href="<?php echo base_url();?>product/details">
+                            <a href="<?php echo site_url('ShopCtrl/product_details');?>">
                                 <img src="<?php echo base_url();?>assets/images/produits/shirt.jpg" alt="" class="img-fluid">
                             </a>
                         </div>
                         <div class="card-footer">
-                            <p class="card-text text-center"><a href="<?php echo base_url();?>product/details">Nom Produit</a></p>
+                            <p class="card-text text-center"><a href="<?php echo site_url('ShopCtrl/product_details');?>">Nom Produit</a></p>
                             <p class="card-text text-center">10 000 FCFA</p>
                         </div>
                     </div>
@@ -98,12 +98,12 @@
                 <div class="col-12 col-md-6 col-lg-3">
                     <div class="card">
                         <div class="card-body p-0">
-                            <a href="<?php echo base_url();?>product/details">
+                            <a href="<?php echo site_url('ShopCtrl/product_details');?>">
                                 <img src="<?php echo base_url();?>assets/images/produits/shirt.jpg" alt="" class="img-fluid">
                             </a>
                         </div>
                         <div class="card-footer">
-                            <p class="card-text text-center"><a href="<?php echo base_url();?>product/details">Nom Produit</a></p>
+                            <p class="card-text text-center"><a href="<?php echo site_url('ShopCtrl/product_details');?>">Nom Produit</a></p>
                             <p class="card-text text-center">10 000 FCFA</p>
                         </div>
                     </div>
@@ -111,12 +111,12 @@
                 <div class="col-12 col-md-6 col-lg-3">
                     <div class="card">
                         <div class="card-body p-0">
-                            <a href="<?php echo base_url();?>product/details">
+                            <a href="<?php echo site_url('ShopCtrl/product_details');?>">
                                 <img src="<?php echo base_url();?>assets/images/produits/shirt.jpg" alt="" class="img-fluid">
                             </a>
                         </div>
                         <div class="card-footer">
-                            <p class="card-text text-center"><a href="<?php echo base_url();?>product/details">Nom Produit</a></p>
+                            <p class="card-text text-center"><a href="<?php echo site_url('ShopCtrl/product_details');?>">Nom Produit</a></p>
                             <p class="card-text text-center">10 000 FCFA</p>
                         </div>
                     </div>
@@ -124,12 +124,12 @@
                 <div class="col-12 col-md-6 col-lg-3">
                     <div class="card">
                         <div class="card-body p-0">
-                            <a href="<?php echo base_url();?>product/details">
+                            <a href="<?php echo site_url('ShopCtrl/product_details');?>">
                                 <img src="<?php echo base_url();?>assets/images/produits/shirt.jpg" alt="" class="img-fluid">
                             </a>
                         </div>
                         <div class="card-footer">
-                            <p class="card-text text-center"><a href="<?php echo base_url();?>product/details">Nom Produit</a></p>
+                            <p class="card-text text-center"><a href="<?php echo site_url('ShopCtrl/product_details');?>">Nom Produit</a></p>
                             <p class="card-text text-center">10 000 FCFA</p>
                         </div>
                     </div>
@@ -137,12 +137,12 @@
                 <div class="col-12 col-md-6 col-lg-3">
                     <div class="card">
                         <div class="card-body p-0">
-                            <a href="<?php echo base_url();?>product/details">
+                            <a href="<?php echo site_url('ShopCtrl/product_details');?>">
                                 <img src="<?php echo base_url();?>assets/images/produits/shirt.jpg" alt="" class="img-fluid">
                             </a>
                         </div>
                         <div class="card-footer">
-                            <p class="card-text text-center"><a href="<?php echo base_url();?>product/details">Nom Produit</a></p>
+                            <p class="card-text text-center"><a href="<?php echo site_url('ShopCtrl/product_details');?>">Nom Produit</a></p>
                             <p class="card-text text-center">10 000 FCFA</p>
                         </div>
                     </div>
@@ -151,7 +151,7 @@
             <!-- BLOC TOUS LES PRODUITS -->
             <div class="row">
                 <div class="col-12 py-3 text-right">
-                    <a href="<?php echo base_url();?>products"><strong>Tous les produits <i class="fa fa-chevron-right"></i></strong></a>
+                    <a href="<?php echo site_url('ShopCtrl/show_all_product');?>"><strong>Tous les produits <i class="fa fa-chevron-right"></i></strong></a>
                 </div>
             </div>
             <!-- BLOCK DE TEXTE PERSONNALISE -->
@@ -189,4 +189,5 @@
         </div>
     </div>
 
+    <?php $this->load->view('partials/footer-shop');?>
     <?php $this->load->view('partials/foot');?>
