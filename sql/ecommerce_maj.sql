@@ -30,3 +30,9 @@ ALTER TABLE `products` CHANGE `id` `id_product` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `affecter_caracteristique` CHANGE `id_product` `id_product` BIGINT(20) UNSIGNED NOT NULL;
 
 ALTER TABLE `affecter_caracteristique` ADD CONSTRAINT `fk_affecter_produit` FOREIGN KEY (`id_product`) REFERENCES `products`(`id_product`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AJOUT 04-09-2023
+
+ALTER TABLE `order_products` ADD `id_product` BIGINT(20) UNSIGNED NOT NULL AFTER `order_id`;
+
+ALTER TABLE `order_products` ADD CONSTRAINT `fk_order_products_products` FOREIGN KEY (`id_product`) REFERENCES `products`(`id_product`) ON DELETE NO ACTION ON UPDATE NO ACTION;
