@@ -132,10 +132,10 @@
                                 </div>
                                 <div class="row"> 
                                     <div class="col">
-                                        <a href="<?php echo base_url();?>products" class="btn btn-dark btn-block"><strong>Continuer Mes Achats</strong></a>
+                                        <a href="<?php echo site_url('ShopCtrl/show_all_product');?>" class="btn btn-dark btn-block"><strong>Continuer Mes Achats</strong></a>
                                     </div>
                                     <div class="col">
-                                        <a href="<?php echo base_url();?>commande" class="btn btn-primary btn-block"><strong><i class="fa fa-check"></i> Commander</strong></a>
+                                        <a href="<?php echo site_url('ShopCtrl/commande');?>" class="btn btn-primary btn-block"><strong><i class="fa fa-check"></i> Commander</strong></a>
                                     </div>    
                                 </div>
                             </div>
@@ -143,7 +143,6 @@
                     </div>
                 </div>
             </div>
-            
         </div>
     </div>
 </div>
