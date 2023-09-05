@@ -12,7 +12,6 @@ class tmp_model extends CI_Model {
         $this->table = "table_name";
     }
 
-
     
     /**
      * [Description for add]
@@ -24,6 +23,13 @@ class tmp_model extends CI_Model {
      */
     public function add($param){
 
+        $this->db->set('var',$var);
+        $this->db->set('var',$var);
+        $this->db->set('var',$var);
+        $this->db->set('var',$var);
+        $this->db->set('var',$var);
+
+        return $this->db->insert($this->table);
     }
 
      /**
@@ -35,6 +41,13 @@ class tmp_model extends CI_Model {
      * 
      */
     public function get_table_name($param){
+
+        $query = $this->db->select('*')
+                          ->from()
+                          ->where('',$param)
+                          ->get();
+
+        return $query->result();
 
     }
 
@@ -49,6 +62,9 @@ class tmp_model extends CI_Model {
      */
     public function update_table_name($param){
 
+        $this->db->set('var',$var);
+
+        return $this->db->update($this->table);
     }
 
      /**
@@ -60,7 +76,10 @@ class tmp_model extends CI_Model {
      * 
      */
     public function delete($param){
+        
+        $this->db->set('var',$var);
 
+        return $this->db->update($this->table);
     }
 
 
