@@ -36,3 +36,7 @@ ALTER TABLE `affecter_caracteristique` ADD CONSTRAINT `fk_affecter_produit` FORE
 ALTER TABLE `order_products` ADD `id_product` BIGINT(20) UNSIGNED NOT NULL AFTER `order_id`;
 
 ALTER TABLE `order_products` ADD CONSTRAINT `fk_order_products_products` FOREIGN KEY (`id_product`) REFERENCES `products`(`id_product`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE `products` CHANGE `title` `title` VARCHAR(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL;
+
+ALTER TABLE `products` CHANGE `slug` `slug` VARCHAR(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL;
