@@ -70,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
-$active_group = 'default';
+$active_group = 'pgsql';
 $query_builder = TRUE;
 
 $db['default'] = array(
@@ -93,6 +93,16 @@ $db['default'] = array(
 	'stricton' => FALSE,
 	'failover' => array(),
 	'save_queries' => TRUE
+);
+
+$db['pgsql'] = array(
+	'dsn'   => 'host=localhost dbname=oneci user=postgres password=root', 
+    // 'dbdriver' => 'pdo',
+	'hostname' => 'localhost',
+	'username' => 'postgre',
+	'password' => '@Ndy2503',
+	'database' => 'oneci',
+	'dbdriver' => 'postgre',
 );
 
 
