@@ -105,6 +105,16 @@ $db['default'] = array(
 	'save_queries' => TRUE
 );
 
+$db['pgsql'] = array(
+	'dsn'   => 'host=localhost dbname=oneci user=postgres password=root', 
+    // 'dbdriver' => 'pdo',
+	'hostname' => 'localhost',
+	'username' => 'postgre',
+	'password' => '@Ndy2503',
+	'database' => 'oneci',
+	'dbdriver' => 'postgre',
+);
+
 
 $db['production'] = array(
 	'dsn'	=> '',

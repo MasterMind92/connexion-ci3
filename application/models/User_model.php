@@ -36,6 +36,7 @@ class User_model extends CI_Model {
         $this->db->set('pass', sha1($array['pass']));
         $this->db->set('role', $array['role']);
         $this->db->set('etat_user   ', 'A');
+        $this->db->set('date_exp', date('Y-m-d h:i:s',strtotime('+90 days')));
         $this->db->set('created_at', date('Y-m-d h:i:s'));
         $this->db->set('updated_at', date('Y-m-d h:i:s'));
 
@@ -120,7 +121,29 @@ class User_model extends CI_Model {
         
         $query = $this->db->get();
 
-        return $query->result();
+        return $query->row();
+    }
+
+    /**
+     * Rechercher un utiliateur specifique
+     *
+     * @param mixed $email
+     * 
+     * @return object
+     * 
+     */
+    public function getUserByEmail($email)
+    {   
+
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('email',$email);
+        $this->db->where('etat_user !=','S');
+        $this->db->where('etat_user !=','B');
+        
+        $query = $this->db->get();
+
+        return $query->row();
     }
 
 

@@ -1,11 +1,23 @@
+<?php $this->load->view('partials/head');?>
 <div class="wrapper">
     <div class="container">
         <div class="row justify-content-center align-items-center" style="height:100vh">
             <div class="col-12 col-md-10 col-lg-8">
-                <form method="post" action="<?php echo base_url();?>">
+                <form method="post" action="<?php echo site_url('UserCtrl/add');?>">
                     <div class="form-group">
                         <h1 class="text-center">LOGO</h1>
                     </div>
+                    <?php if( $this->session->flashdata('msg')):?>
+                    <div class="alert alert-warning" role="alert">
+                        <?php echo $this->session->flashdata('msg'); ?>
+                    </div>
+                    <?php endif;?>
+
+                    <?php if(!empty(validation_errors())):?>
+                    <div class="alert alert-warning" role="alert">
+                        <?php echo validation_errors(); ?>
+                    </div>
+                    <?php endif;?> 
                     <div class="form-group row">
                         <div class="col">
                             <label for="nom">Nom</label>
@@ -82,3 +94,4 @@
         </div>
     </div>
 </div>
+<?php $this->load->view('partials/foot');?>

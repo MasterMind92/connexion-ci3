@@ -1,12 +1,14 @@
+
+<?php $this->load->view('partials/head');?>
 <div class="wrapper">
     <div class="container">
         <div class="row justify-content-center align-items-center" style="height:100vh">
             <div class="col-12 col-md-8 col-lg-4">
-                <!-- <form method="post" action="<?php //echo base_url();?>"> -->
+                <!-- <form method="post" action="<?php #echo base_url();?>"> -->
                 <!-- Fonction d'affichage des erreurs -->
                 
                 <!-- Fonction de redirection chemin relatif -->
-                <?php echo form_open('ConnexionCtrl/index'); ?>
+                <?php echo form_open('ConnexionCtrl/'); ?>
                     <div class="form-group">
                         <h1 class="text-center">LOGO</h1>
                     </div>
@@ -47,10 +49,12 @@
                     </div>
                 </form>
                 <div class="text-center">
-                    <a href="<?php echo site_url('ConnexionCtrl/reinitialisation')?>">Mot de Passe Oublié ?</a>
+                    <a href="<?php echo site_url('ReinitCtrl/')?>">Mot de Passe Oublié ?</a>
                 </div>
 
             </div>
         </div>
     </div>
 </div>
+
+<?php $this->load->view('partials/foot');?>

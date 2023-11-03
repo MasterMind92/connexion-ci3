@@ -17,9 +17,10 @@ class ReinitCtrl extends CI_Controller {
 	function __construct()
 	{	
 		parent::__construct();
-		$this->load->helper(array('form', 'url','notif'));
+		$this->load->helper(array('form', 'url','notif','connexion'));
 		$this->load->library('form_validation');
 		$this->load->model('User_model','user');
+		$this->load->model('Token_model','token');
 	}
 
     // formulaire envoie de mail
@@ -27,6 +28,76 @@ class ReinitCtrl extends CI_Controller {
 	{   
         // envoyer lien de reinitialisation par email
 		$this->load->view('connexion/send_reinit_mail');
+	}
+
+	public function reinit_form($token){
+
+		// recuperation de la reponse de verification du token utilisé
+		$verify_token_response = $this->token->verify_token($token);
+		// verification de la date d'expiration du token
+		$check_token_date_exp = $this->token->check_exp_date($token);
+
+		// var_dump($verify_token_response,empty($check_token_date_exp));exit();
+
+		// condition d'existence du token
+		$condition_token_existe = $verify_token_response != FALSE;
+		// condition verification date d'expiration du token
+		$condition_token_expire = empty($check_token_date_exp) ;
+
+		// si les deux conditions sont verifiées
+		if ($condition_token_existe AND $condition_token_expire) {
+			// recuperation de l'utilisateur via le token
+			$user = $this->token->get_user_by_token($token);
+			// var_dump($user);
+			// exit();
+			// changer l'etat du token a utilisé
+			// $change_state_response = $this->token->set_used_token($token);
+
+			if (!empty($user)) {
+				// affichage du formulaire de reinitialisation
+				$this->load->view('connexion/reinitialisation',['user'=>$user[0]]);
+
+			}else{
+				// afficher la page d'erreur
+				redirect(404);
+			}
+			
+		} else {
+			// Afficher la page d'erreur
+			redirect(404);
+		}
+	}
+
+	// enovyer mail de reinitialisation
+	public function send_reinit_mail()
+	{	
+		// création du token
+		$token = generate_token();
+		// création du lien de réinitialisation
+		$lien = generate_link($token);
+		// récupération email utilisateur
+		$email = $this->input->post('email');
+		// récupération de l'utilisateur
+		$user = $this->user->getUserByEmail($email);
+
+		// var_dump($user);
+		// exit();
+		// si l'utilisateur existe 
+		if (!empty($user)) {
+			// ajout du token
+			$insert_response = $this->token->add_token(['token'=>$token,'id'=>$user->id_user]);
+			// mise en place du mail de reinitialisation
+			$message = "Cliquez sur le lien pour réinitialiser vos accès \n ".$lien;
+			// envoi du mail
+			mailjet($user->email, "Réinitialisation mot de passe", $message);
+		}
+		// else{
+		// 	$this->session->set_flashdata('msg','Vérifiez votre boite e-mail');
+		// }
+		
+		$this->session->set_flashdata('msg','Vérifiez votre boite e-mail');
+
+		return redirect("ReinitCtrl/");
 	}
 
     // formulaire de reinitialisation
@@ -52,11 +123,9 @@ class ReinitCtrl extends CI_Controller {
 
 	}
 
-    // penser a une fonction pour generer un lien temporaire
-
     // fonction de validation mot de passe
     // operation validation du formulaire de connexion
-	public function login_form_validation_request()
+	public function reinit_form_validation_request()
 	{
 		$this->form_validation->set_rules('login', 'Login', 'required|valid_email|is_unique[users.email]',
 			array(

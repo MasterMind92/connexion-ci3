@@ -3,7 +3,13 @@
     <div class="container">
         <div class="row justify-content-center align-items-center" style="height:100vh">
             <div class="col-12 col-md-8 col-lg-4">
-                <form method="post" action="<?php echo site_url('ConnexionCtrl/');?>">
+                <form method="post" action="<?php echo site_url('ReinitCtrl/send_reinit_mail');?>">
+                    <?php if( $this->session->flashdata('msg')):?>
+                    <div class="alert alert-success" role="alert">
+                        <?php echo $this->session->flashdata('msg'); ?>
+                    </div>
+                    <?php endif;?>
+
                     <div class="form-group">
                         <h1 class="text-center">LOGO</h1>
                     </div>
