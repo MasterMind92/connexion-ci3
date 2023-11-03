@@ -120,7 +120,29 @@ class User_model extends CI_Model {
         
         $query = $this->db->get();
 
-        return $query->result();
+        return $query->row();
+    }
+
+    /**
+     * Rechercher un utiliateur specifique
+     *
+     * @param mixed $email
+     * 
+     * @return object
+     * 
+     */
+    public function getUserByEmail($email)
+    {   
+
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('email',$email);
+        $this->db->where('etat_user !=','S');
+        $this->db->where('etat_user !=','B');
+        
+        $query = $this->db->get();
+
+        return $query->row();
     }
 
 

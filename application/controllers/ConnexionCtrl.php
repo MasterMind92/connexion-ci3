@@ -17,9 +17,10 @@ class ConnexionCtrl extends CI_Controller {
 	function __construct()
 	{	
 		parent::__construct();
-		$this->load->helper(array('form', 'url'));
+		$this->load->helper(array('form', 'url','notif','connexion'));
 		$this->load->library('form_validation');
 		$this->load->model('User_model','user');
+		$this->load->model('Token_model','token');
 	}
 
 	public function index()
@@ -32,7 +33,7 @@ class ConnexionCtrl extends CI_Controller {
 		if ($this->form_validation->run() == FALSE)
 		{
 			
-			$this->load->view('login');
+			$this->load->view('connexion/login');
 			
 		}
 		// si la validation se passe bien
@@ -52,7 +53,7 @@ class ConnexionCtrl extends CI_Controller {
 
 				$this->session->set_flashdata('msg', 'Login ou mot de passe incorrecte');
 				
-				$this->load->view('login');
+				$this->load->view('connexion/login');
 				
 			} else {
 				// verifier la date d'expiration du password utilisateur
@@ -87,13 +88,11 @@ class ConnexionCtrl extends CI_Controller {
 
 	}
 
-
 	// vue de reinitialisation de l'utilisateur
 	public function add_user()
 	{
-		$this->load->view('inscription');
+		$this->load->view('connexion/inscription');
 	}
-
 	
 	// operation validation du formulaire de connexion
 	public function login_form_validation_request()
@@ -117,11 +116,7 @@ class ConnexionCtrl extends CI_Controller {
 		// $this->form_validation->set_rules('email', 'Email', 'required');
 	}
 
-	// operation 
-	// public function user_connected()
-	// {
-	// 	$this->load->view('welcome_message');
-	// }
+	
 
 	// public function redirect()
 	// {

@@ -50,14 +50,14 @@ class UserCtrl extends CI_Controller {
 			// si la validation se passe bien
 			//enregistrement des variable
 			$data = [
-			'lname' => $this->input->post('nom'),
-			'fname' => $this->input->post('prenoms'),
-			'email' => $this->input->post('email'),
-			'pass' => $this->input->post('password'),
-			'login' => $this->input->post('login'),
-			'tel' => $this->input->post('phone'),
-			'role' => $this->input->post('role'),
-			'etat' => $this->input->post('etat'),
+				'lname' => $this->input->post('nom'),
+				'fname' => $this->input->post('prenoms'),
+				'email' => $this->input->post('email'),
+				'pass' => $this->input->post('password'),
+				'login' => $this->input->post('login'),
+				'tel' => $this->input->post('phone'),
+				'role' => $this->input->post('role'),
+				'etat' => $this->input->post('etat'),
 			];
 
 			// Exécution de la methode d'insertion
@@ -105,13 +105,13 @@ class UserCtrl extends CI_Controller {
 			// demander si l'utilisateur existe
 			// demander si c'est le bon login + mot de passe
 			$data = [
-			'lname' => $this->input->post('nom'),
-			'fname' => $this->input->post('prenoms'),
-			'email' => $this->input->post('email'),
-			'pass' => $this->input->post('password'),
-			'login' => $this->input->post('login'),
-			'role' => $this->input->post('role'),
-			'etat' => $this->input->post('etat'),
+				'lname' => $this->input->post('nom'),
+				'fname' => $this->input->post('prenoms'),
+				'email' => $this->input->post('email'),
+				'pass' => $this->input->post('password'),
+				'login' => $this->input->post('login'),
+				'role' => $this->input->post('role'),
+				'etat' => $this->input->post('etat'),
 			];
 
 			$update_response = $this->user->update($id,$lname,$fname,$email,$login,$pass,$role,$etat);
@@ -158,10 +158,20 @@ class UserCtrl extends CI_Controller {
 		);
 
 		// email validation
-		$this->form_validation->set_rules('email', 'Email', 'required|valid_email',
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|differs[login]',
 			array(
 				'required' => 'le champ %s est obligatoire.',
+				'differs'=>'le champ %s ne doit pas être identique au champ email',
 				'valid_email'=> 'le champ %s n\'est pas une adresse mail valide',
+			)
+		);
+
+		// login validation
+		$this->form_validation->set_rules('login', 'Login', 'required|differs[email]|min_length[6]',
+			array(
+				'required' => 'le champ %s est obligatoire.',
+				'differs'=>'le champ %s ne doit pas être identique au champ email',
+				'min_length'=>'le champ %s ne doit pas avoir moins de 6 caractères',
 			)
 		);
 

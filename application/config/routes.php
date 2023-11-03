@@ -52,3 +52,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'ConnexionCtrl';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['reinitialisation/(:any)'] = "Welcome/verify_token/$1";
