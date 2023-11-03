@@ -22,4 +22,12 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('welcome_message');
 	}
+
+	public function test(){
+		// $this->load->view('bs3_test');
+		$files = glob('assets/*');
+
+
+		var_dump($files);
+	}
 }

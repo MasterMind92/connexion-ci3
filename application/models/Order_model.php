@@ -75,6 +75,7 @@ class Order_model extends CI_Model {
         return $this->db->update($this->table);
     }
 
+    
      /**
      * [Description for add]
      *
