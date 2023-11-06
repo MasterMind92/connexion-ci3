@@ -14,3 +14,10 @@ function generate_link($token){
     return "reinitialisation/".$token;
 }
 
+// fonction de verification de l'existence d'un utilisateur en session
+
+function userExist()
+{
+  return isset($_SESSION['user']); 
+}
+

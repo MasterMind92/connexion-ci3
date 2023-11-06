@@ -82,6 +82,13 @@ class UserCtrl extends CI_Controller {
 		
 	}
 
+	// vue d'import utilisateur
+	public function import() : void {
+		// affichage formulaire d'import
+		$this->load->view('users/import_users');
+
+	}
+
 	// vue d'ajout d'un utilisateur
 	public function modify($id)
 	{	
@@ -95,7 +102,7 @@ class UserCtrl extends CI_Controller {
 		if ($this->form_validation->run() == FALSE)
 		{
 			
-			$this->load->view('blank',['view'=>'users/show_users','user'=>$user[0]]);
+			$this->load->view('blank',['view'=>'users/show_users','user'=>$user]);
 			
 		}
 		// si la validation se passe bien

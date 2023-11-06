@@ -60,8 +60,12 @@ class ConnexionCtrl extends CI_Controller {
 				$exp = $this->check_date_exp($user[0]->id_user);
 				// si non ok rediriger l'utilisateur vers la page de reinitialisation
 				if ($exp == false) {
+
+					// enregistrer l'utilisateur en session puis le rediriger
+					// sur la page d'accueil
+					$this->session->set_userdata(['user'=>$user]);
 					
-					redirect('Welcome');// reinitialisation
+					redirect('userctrl/');// reinitialisation
 				}
 
 				// sinon on le renvoie a la page de connexion
@@ -97,11 +101,10 @@ class ConnexionCtrl extends CI_Controller {
 	// operation validation du formulaire de connexion
 	public function login_form_validation_request()
 	{
-		$this->form_validation->set_rules('login', 'Login', 'required|valid_email',
+		$this->form_validation->set_rules('login', 'Login', 'required|alpha_numeric',
 			array(
 				'required' => 'le champ %s est obligatoire.',
 				'alpha_numeric'=> 'le champ %s doit contenir que des chiffres et des lettres',
-				'valid_email'=> 'le champ %s n\'est pas une adresse mail valide',
 			)
 		);
 		$this->form_validation->set_rules('password', 'Password', 'required|min_length[8]|trim|alpha_numeric',

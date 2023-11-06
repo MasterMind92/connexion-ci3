@@ -19,16 +19,17 @@
                 </div>
                 <?php endif;?>
 
-                <div class="d-flex justify-content-between">
+                <div class="d-flex">
                     <a href="<?php echo site_url('userctrl/')?> " class="btn btn-primary" type="button">Revenir aux utilisateurs</a>
+                    <a href="<?php echo site_url('userctrl/import')?> " class="btn btn-info mx-2" type="button">Importer des utilisateurs</a>
                     <!-- <a href="#" class="btn btn-primary" type="button">Text</a> -->
-                </div>
+                </div
 
+                
                 <?php echo form_open('userctrl/modify/'.$user->id_user); ?>
-                    <!-- <form method="post" action="<?php #echo base_url();?>"> -->
                         <!-- <input type="hidden" name=""> -->
                         <div class="form-group">
-                            <h1 class="text-center">Modifier un utilisateur</h1>
+                            <h1 class="text-center py-4">Modifier un utilisateur</h1>
                         </div>
                         <div class="form-group row">
                             <div class="col">

@@ -21,6 +21,7 @@
                     <?php endif;?>
                     <div class="d-flex justify-content-between">
                         <a href="<?php echo site_url('userctrl/')?> " class="btn btn-primary" type="button">Revenir aux utilisateurs</a>
+                        <a href="<?php echo site_url('userctrl/import')?> " class="btn btn-info" type="button">Importer des utilisateurs</a>
                         <!-- <a href="#" class="btn btn-primary" type="button">Text</a> -->
                     </div>
 
@@ -40,12 +41,6 @@
                                 <!-- <small id="helpId" class="text-muted">Help text</small> -->
                             </div>
                         </div>
-
-                        <!-- <div class="form-group">
-                        <label for="prenoms">Prénoms</label>
-                        <input type="text" name="prenoms" id="prenoms-input" class="form-control" placeholder="Entrez votre " >
-                        <small id="helpId" class="text-muted">Help text</small>
-                        </div> -->
 
                         <div class="form-group row">
                             <div class="col">

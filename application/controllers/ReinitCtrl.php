@@ -89,7 +89,7 @@ class ReinitCtrl extends CI_Controller {
 			// mise en place du mail de reinitialisation
 			$message = "Cliquez sur le lien pour réinitialiser vos accès \n ".$lien;
 			// envoi du mail
-			mailjet($user->email, "Réinitialisation mot de passe", $message);
+			mailjet($user->email, "Réinitialisation mot de passe", $message,"MAD Admin");
 		}
 		// else{
 		// 	$this->session->set_flashdata('msg','Vérifiez votre boite e-mail');
