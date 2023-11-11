@@ -54,6 +54,9 @@ class ReinitCtrl extends CI_Controller {
 			// $change_state_response = $this->token->set_used_token($token);
 
 			if (!empty($user)) {
+
+				// $this->send_reinit_mail();
+				// exit();
 				// affichage du formulaire de reinitialisation
 				$this->load->view('connexion/reinitialisation',['user'=>$user[0]]);
 
@@ -89,15 +92,18 @@ class ReinitCtrl extends CI_Controller {
 			// mise en place du mail de reinitialisation
 			$message = "Cliquez sur le lien pour réinitialiser vos accès \n ".$lien;
 			// envoi du mail
-			mailjet($user->email, "Réinitialisation mot de passe", $message,"MAD Admin");
+			$mail_response = mailjet($user->email, "Réinitialisation mot de passe", $message,"MAD Admin");
 		}
+
+		var_dump($mail_response);
+		exit();
 		// else{
 		// 	$this->session->set_flashdata('msg','Vérifiez votre boite e-mail');
 		// }
 		
 		$this->session->set_flashdata('msg','Vérifiez votre boite e-mail');
 
-		return redirect("ReinitCtrl/");
+		// return redirect("ReinitCtrl/");
 	}
 
     // formulaire de reinitialisation

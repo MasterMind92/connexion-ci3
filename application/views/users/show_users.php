@@ -102,13 +102,7 @@
                             </div>
                         </div>
                         
-                        <!-- <div class="form-group">
-                            <div class="form-check form-check-inline">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember-input" value=1> Se Souvenir de Moi
-                                </label>
-                            </div>
-                        </div> -->
+                        
                         <div class="form-group row">
                             <div class="col-12 col-md-6">
                                 <button class="btn btn-success btn-block" type="reset">Reinitialiser</button>

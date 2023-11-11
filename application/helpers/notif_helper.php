@@ -15,7 +15,7 @@ function mailjet($destinataire, $subject, $message,$app_name)
         'Messages' => [
             [
                 'From' => [
-                    'Email' => "marc.dalo@webdev.ci",
+                    'Email' => "dalomarc92@gmail.com",
                     'Name' => $app_name 
                 ],
                 'To' => [

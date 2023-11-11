@@ -89,6 +89,39 @@ class UserCtrl extends CI_Controller {
 
 	}
 
+	// operation de recuperation des donnees 
+	public function json_response() 
+	{
+		
+        $data = array();
+		
+        if(!empty($req))
+        {
+            foreach ($req as $key=>$value)
+            {
+                $edit = "";
+                $delete = "";
+    
+                $nestedData['id'] = $key+1;
+                $nestedData['name'] = $value['name'];
+                $nestedData['email'] = $value['email'];
+                $nestedData['mobile'] = $value['mobile'];
+                
+                $nestedData['manage'] = "<a href='$edit' class='btn  btn-warning  btn-xs'><i class='fa fa-pencil'></i> Edit</a> &nbsp;&nbsp; <a onclick='return delet()' href='$delete' class='btn btn-danger btn-xs confirm-delete' ><i class='fa fa-trash'></i> Delete</a>";
+    
+                $data[] = $nestedData;
+    
+            }
+        }
+        
+        $json_data = array(
+            "recordsTotal"    => intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data"            => $data
+        );
+        echo json_encode($json_data);	
+	}
+
 	// vue d'ajout d'un utilisateur
 	public function modify($id)
 	{	
