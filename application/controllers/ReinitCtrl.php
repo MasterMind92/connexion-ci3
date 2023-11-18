@@ -95,8 +95,8 @@ class ReinitCtrl extends CI_Controller {
 			$mail_response = mailjet($user->email, "Réinitialisation mot de passe", $message,"MAD Admin");
 		}
 
-		var_dump($mail_response);
-		exit();
+		// var_dump($mail_response);
+		// exit();
 		// else{
 		// 	$this->session->set_flashdata('msg','Vérifiez votre boite e-mail');
 		// }

@@ -172,6 +172,30 @@ class User_model extends CI_Model {
         return $query->result();
     }
 
+    /**
+     * Rechercher un utiliateur specifique
+     *
+     * @param mixed $email
+     * @param mixed $pass
+     * 
+     * @return object
+     * 
+     */
+    public function connect_user($login,$pass)
+    {   
+
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('login',$login);
+        $this->db->where('etat_user !=','S');
+        $this->db->where('etat_user !=','B');
+        // $this->db->where('date_exp <',date('Y-m-d H:i:s'));
+        
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
 
     /**
      * Supprimer un utilisateur
@@ -216,6 +240,10 @@ class User_model extends CI_Model {
         $this->db->from('users');
         $this->db->where('id_user',$id);
         $this->db->where('date_exp <',date('Y-m-d H:i:s'));
+
+        $query = $this->db->get();
+
+        return $query->result();
     }
 
     // role setter
