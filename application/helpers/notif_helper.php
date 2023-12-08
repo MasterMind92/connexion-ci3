@@ -24,7 +24,7 @@ function mailjet($destinataire, $subject, $message,$app_name)
                     ]
                 ],
                 'Subject' => $subject,
-                'TextPart' => $message,
+                'TextPart' => "$message",
                 'HTMLPart' => $message,
             ]
         ]

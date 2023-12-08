@@ -47,9 +47,11 @@ class ConnexionCtrl extends CI_Controller {
 
 			$user = $this->user->get($login,$mdp);
 
-			// var_dump($user==NULL,sha1($mdp));
+			// var_dump(empty($user),sha1($mdp));
+			// exit();
+
 			// si l'utilisateur est vide
-			if ($user === NULL) {
+			if (empty($user)) {
 
 				$this->session->set_flashdata('msg', 'Login ou mot de passe incorrecte');
 				

@@ -1,7 +1,6 @@
         
         <!-- Optional JavaScript -->
         <script src="<?php echo base_url();?>assets/js/sidebar/sidebar.js" ></script>
-        <!-- <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="<?php echo base_url();?>assets/js/jquery_3.6.0.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
@@ -11,22 +10,8 @@
         <script src="<?php echo base_url();?>assets/js/index.js" ></script>
         <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
         <script type="text/javascript">
-            // script d'initialisation
-            // const input = window.intlTelInput(document.querySelector("#phone_entreprise"), {
-            //     hiddenInput: "full",
-            //     separateDialCode: true,
-            //     onlyCountries: ["sn", "ci"],
-            //     utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
-            // });
-            // // script d'obtention de la valeur de l'input
-            // var full_number = input.getNumber(intlTelInputUtils.numberFormat.E164);
-            // var fullNumber  =  full_number.slice(1);
-            // console.log(fullNumber);
-            // $("input[name='phone_entreprise[full]'").val(fullNumber);
-            
+           
             //behaviour of datatables
-            
-
             var datatable = new DataTable('#example', {
                 initComplete: function () {
                     this.api()
@@ -35,8 +20,6 @@
                             let column = this;
                             let title = column.footer().textContent;
 
-
-            
                             // Create input element
                             let input = document.createElement('input');
                             input.placeholder = title;
@@ -57,8 +40,8 @@
                                 }
                             });
                         });
-                }
-            }); 
+                    }
+                }); 
         </script>
     </body>
 </html>
