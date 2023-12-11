@@ -43,6 +43,20 @@ class User_model extends CI_Model {
         return $this->db->insert('users');
     }
 
+    public function add_inscription($array)
+    {   
+        $this->db->set('nom', $array['nom']);
+        $this->db->set('prenoms', $array['prenoms']);
+        $this->db->set('email', $array['email']);
+        $this->db->set('adresse', $array['adresse']);
+        $this->db->set('telephone', $array['telephone']);
+        $this->db->set('date_nais', $array['date_nais']);
+        $this->db->set('created_at', date('Y-m-d h:i:s'));
+        // $this->db->set('updated_at', date('Y-m-d h:i:s'));
+
+        return $this->db->insert('membres');
+    }
+
 
     /**
      * Modifier caractéristiques utilisateur
@@ -156,12 +170,12 @@ class User_model extends CI_Model {
      * @return object
      * 
      */
-    public function get($email,$pass)
+    public function get($login,$pass)
     {   
 
         $this->db->select('*');
         $this->db->from('users');
-        $this->db->where('email',$email);
+        $this->db->where('login',$login);
         $this->db->where('pass',sha1($pass));
         $this->db->where('etat_user !=','S');
         $this->db->where('etat_user !=','B');

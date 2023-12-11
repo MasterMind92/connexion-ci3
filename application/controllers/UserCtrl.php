@@ -23,7 +23,7 @@ class UserCtrl extends CI_Controller {
 	{	
 		parent::__construct();
 		$this->load->helper(array('form', 'url'));
-		$this->load->library('form_validation');
+		$this->load->library(array('form_validation','Excel'));
 		$this->load->model('User_model','user');
 	}
 
@@ -82,10 +82,96 @@ class UserCtrl extends CI_Controller {
 		
 	}
 
+	// vue de reinitialisation de l'utilisateur
+	public function inscription()
+	{	
+		$this->inscription_validation_request();
+
+		 // si la validation ne se passe pas bien
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('users/add-user-infos');
+		}
+		else
+		{	
+			// si la validation se passe bien
+			//enregistrement des variable
+			$data = [
+				'nom' => $this->input->post('nom'),
+				'prenoms' => $this->input->post('prenoms'),
+				'email' => $this->input->post('email'),
+				'adresse' => $this->input->post('adresse'),
+				'telephone' => $this->input->post('phone'),
+				'date_nais' => $this->input->post('date_nais'),
+			];
+
+			// Exécution de la methode d'insertion
+			$add_response = $this->user->add_inscription($data);
+
+			// Mise en place du message
+			if ($add_response != NULL) {
+				$this->session->set_flashdata('msg', 'Infos utilisateur enregistré avec succès');
+			} else {
+				$this->session->set_flashdata('msg', 'Echec enregistrement utilisateur');
+			}
+
+			$this->load->view('partials/head');
+			$this->load->view('partials/admin/sidebar');
+			$this->load->view('users/add-user-infos');
+			$this->load->view('partials/foot');
+			
+			// si c'est bon on le connecte
+			// page de succes
+			// $this->load->view('formsuccess');
+		}
+		
+	}
+
 	// vue d'import utilisateur
 	public function import() : void {
-		// affichage formulaire d'import
-		$this->load->view('users/import_users');
+		$config['upload_path']          = './uploads/';
+		$config['allowed_types']        = 'gif|jpg|png';
+		$config['max_size']             = 100;
+		$config['max_width']            = 1024;
+		$config['max_height']           = 768;
+
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->do_upload('userfile'))
+		{
+				$error = array('error' => $this->upload->display_errors());
+
+				// affichage formulaire d'import
+				$this->load->view('users/import_users',$error);
+
+				// $this->load->view('upload_form', $error);
+		}
+		else
+		{
+				$data = array('upload_data' => $this->upload->data());
+
+				$this->session->set_flashdata('msg',"Fichier enregistré avec succès");
+				// affichage formulaire d'import
+				$this->load->view('users/import_users',$data);
+
+				// $this->load->view('upload_success', $data);
+		}
+
+		
+
+	}
+
+	// operation de lecture et d'affichage du fichier excel
+	public function read_file() {
+		var_dump($_POST,$_FILES);
+	}
+	// operation d'enregistrement du fichier 
+	public function save_file(){
+
+	}
+
+	// operation de stockage du fichier
+	public function stock_file(){
 
 	}
 
@@ -176,6 +262,72 @@ class UserCtrl extends CI_Controller {
 		}
 
 		
+	}
+
+	// operation validation du formulaire de connexion
+	public function inscription_validation_request()
+	{
+		// lname validation
+		$this->form_validation->set_rules('prenoms', 'Prenoms', 'required|min_length[3]',
+			array(
+				'required' => 'le champ %s est obligatoire.',
+				'min_length'=> 'le champ %s doit contenir plus de 3 caractères',
+			)
+		);
+
+		// fname validation
+		$this->form_validation->set_rules('nom', 'Nom', 'required|min_length[3]',
+			array(
+				'required' => 'le champ %s est obligatoire.',
+				'min_length'=> 'le champ %s doit contenir plus de 3 caractères',
+			)
+		);
+
+		// email validation
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|differs[login]',
+			array(
+				'required' => 'le champ %s est obligatoire.',
+				'differs'=>'le champ %s ne doit pas être identique au champ email',
+				'valid_email'=> 'le champ %s n\'est pas une adresse mail valide',
+			)
+		);
+
+		// login validation
+		$this->form_validation->set_rules('date_nais', 'Date de naissance', 'required',
+			array(
+				'required' => 'le champ %s est obligatoire.',
+			)
+		);
+		// login validation
+		$this->form_validation->set_rules('adresse', 'Date de naissance', 'required',
+			array(
+				'required' => 'le champ %s est obligatoire.',
+			)
+		);
+
+		// phone validation
+		$this->form_validation->set_rules('phone', 'Phone', 'required|min_length[8]|trim|numeric',
+			array(
+				'required' => 'le champ %s est obligatoire.',
+				'min_length'=> 'le champ %s est inférieur à 8 caractères',
+				'numeric'=> 'le champ %s ne doit contenir que des chiffres',
+			)
+		);
+
+
+		// password validation
+		// $this->form_validation->set_rules('password', 'Password', 'required|min_length[8]|trim|alpha_numeric',
+		// 		array(
+		// 			'required' => 'le champ %s est obligatoire.',
+		// 			'min_length'=> 'le champ %s est inférieur à 8 caractères',
+		// 			'alpha_numeric'=> 'le champ %s doit contenir que des chiffres et des lettres',
+		// 		)
+		// );
+
+		
+
+		// $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
+		// $this->form_validation->set_rules('email', 'Email', 'required');
 	}
 
 	// operation validation du formulaire de connexion
@@ -333,6 +485,6 @@ class UserCtrl extends CI_Controller {
 		redirect('userctrl/');
 
 		// return $response;
-	}
+	}	
 
 }

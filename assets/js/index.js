@@ -43,5 +43,23 @@ $('#with-input').on('click', function() {
 
 
 // initialisation du datatable use
-
 $("#user_table").DataTable();
+
+// declaration formulaire
+const formId = document.getElementById("import-form") ;
+const formObj = new FormData(formId);
+
+// soumettre le formulaire a l'operation d'affichage
+// mise en place des options
+var options = {
+    type: "POST",
+    url: "/UserCtrl/read_file",
+    data: formObj,
+    dataType: "json",
+    success: function (response) {
+        console.log(response);
+    }
+}
+
+// execution requete
+$.ajax(options);

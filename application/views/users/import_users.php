@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <?php $this->load->view('partials/admin/header')?>
 
-            <div class="row justify-content-center align-items-center" style="height:80vh">
+            <div class="row justify-content-center align-items-center" style="height:70vh">
                 <div class="col-12 col-md-10 col-lg-8">
                     <?php if( $this->session->flashdata('msg')):?>
                     <div class="alert alert-info text-center" role="alert">
@@ -23,8 +23,9 @@
                         <a href="<?php echo site_url('userctrl/')?> " class="btn btn-primary" type="button">Revenir aux utilisateurs</a>
                         <!-- <a href="#" class="btn btn-primary" type="button">Text</a> -->
                     </div>
-
-                    <?php echo form_open('userctrl/bulk_add'); ?>
+                    
+                    <form action="<?php echo site_url('userctrl/bulk_add'); ?>" id="import-form" method="post" enctype="multipart/form-data" ></form>
+                    <?php #echo form_open('userctrl/bulk_add'); ?>
                         <div class="form-group">
                             <h1 class="text-center">Ajouter un lot d'utilisateur</h1>
                         </div>
@@ -36,7 +37,7 @@
                             </div>
                             <div class="col">
                                 <label for="file">Fichier</label>
-                                <input type="file" name="file" id="file-input" class="form-control" value="<?php echo set_value(''); ?>" >
+                                <input type="file" name="userfile" id="file-input" class="form-control" value="<?php echo set_value(''); ?>" >
                                 <!-- <small id="helpId" class="text-muted">Help text</small> -->
                             </div>
                             <div class="col">
