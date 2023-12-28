@@ -26,6 +26,7 @@
                     </div> -->
 
                     <?php echo form_open('userctrl/inscription'); ?>
+                    <form action="" method="post"></form>
                         <div class="form-group">
                             <h1 class="text-center">Inscrivez vous</h1>
                         </div>

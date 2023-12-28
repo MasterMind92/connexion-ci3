@@ -20,7 +20,6 @@ class ConnexionCtrl extends CI_Controller {
 		$this->load->helper(array('form', 'url','notif','connexion'));
 		$this->load->library('form_validation');
 		$this->load->model('User_model','user');
-		$this->load->model('Token_model','token');
 	}
 
 	public function index()

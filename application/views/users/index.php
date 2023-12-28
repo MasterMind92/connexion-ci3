@@ -16,8 +16,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="d-flex justify-content-end py-3">
-                        <a id="" class="btn btn-primary" href="<?php echo site_url('userctrl/add'); ?>" title="Ajouter un utilisateur" role="button"> <i class="fa fa-plus"></i> Ajouter </a>
-                        <a id="" class="btn btn-primary ml-3" href="<?php echo site_url('userctrl/import')?>" role="button" title="Ajouter plusieurs utilisateurs en une seule fois">Importer Fichier</a>
+                        <div>
+                            <?php $this->load->view("modular-form/search-form");?>
+                        </div>
+                        <div class="pt-4 pl-3">
+                            <a id="" class="btn btn-primary" href="<?php echo site_url('userctrl/add'); ?>" title="Ajouter un utilisateur" role="button"> <i class="fa fa-plus"></i> Ajouter </a>
+                            <a id="" class="btn btn-primary ml-3" href="<?php echo site_url('userctrl/import')?>" role="button" title="Ajouter plusieurs utilisateurs en une seule fois">Importer Fichier</a>
+                        </div>
                         <!-- <a id="" class="btn btn-primary" href="#" role="button">Action</a> -->
                     </div>
                 </div>

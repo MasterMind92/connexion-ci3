@@ -31,7 +31,7 @@ class UserCtrl extends CI_Controller {
 	{	
 		$users = $this->user->get_all_users();
 
-		$this->load->view('users/index',['users'=>$users]);
+		$this->load->view('users/index',['users'=>$users,'submit_link'=>"Userctrl/search"]);
 		
 	}
 
@@ -157,22 +157,6 @@ class UserCtrl extends CI_Controller {
 				// $this->load->view('upload_success', $data);
 		}
 
-		
-
-	}
-
-	// operation de lecture et d'affichage du fichier excel
-	public function read_file() {
-		var_dump($_POST,$_FILES);
-	}
-	// operation d'enregistrement du fichier 
-	public function save_file(){
-
-	}
-
-	// operation de stockage du fichier
-	public function stock_file(){
-
 	}
 
 	// operation de recuperation des donnees 
@@ -261,73 +245,6 @@ class UserCtrl extends CI_Controller {
 			// $this->load->view('formsuccess');
 		}
 
-		
-	}
-
-	// operation validation du formulaire de connexion
-	public function inscription_validation_request()
-	{
-		// lname validation
-		$this->form_validation->set_rules('prenoms', 'Prenoms', 'required|min_length[3]',
-			array(
-				'required' => 'le champ %s est obligatoire.',
-				'min_length'=> 'le champ %s doit contenir plus de 3 caractères',
-			)
-		);
-
-		// fname validation
-		$this->form_validation->set_rules('nom', 'Nom', 'required|min_length[3]',
-			array(
-				'required' => 'le champ %s est obligatoire.',
-				'min_length'=> 'le champ %s doit contenir plus de 3 caractères',
-			)
-		);
-
-		// email validation
-		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|differs[login]',
-			array(
-				'required' => 'le champ %s est obligatoire.',
-				'differs'=>'le champ %s ne doit pas être identique au champ email',
-				'valid_email'=> 'le champ %s n\'est pas une adresse mail valide',
-			)
-		);
-
-		// login validation
-		$this->form_validation->set_rules('date_nais', 'Date de naissance', 'required',
-			array(
-				'required' => 'le champ %s est obligatoire.',
-			)
-		);
-		// login validation
-		$this->form_validation->set_rules('adresse', 'Date de naissance', 'required',
-			array(
-				'required' => 'le champ %s est obligatoire.',
-			)
-		);
-
-		// phone validation
-		$this->form_validation->set_rules('phone', 'Phone', 'required|min_length[8]|trim|numeric',
-			array(
-				'required' => 'le champ %s est obligatoire.',
-				'min_length'=> 'le champ %s est inférieur à 8 caractères',
-				'numeric'=> 'le champ %s ne doit contenir que des chiffres',
-			)
-		);
-
-
-		// password validation
-		// $this->form_validation->set_rules('password', 'Password', 'required|min_length[8]|trim|alpha_numeric',
-		// 		array(
-		// 			'required' => 'le champ %s est obligatoire.',
-		// 			'min_length'=> 'le champ %s est inférieur à 8 caractères',
-		// 			'alpha_numeric'=> 'le champ %s doit contenir que des chiffres et des lettres',
-		// 		)
-		// );
-
-		
-
-		// $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
-		// $this->form_validation->set_rules('email', 'Email', 'required');
 	}
 
 	// operation validation du formulaire de connexion
@@ -486,5 +403,73 @@ class UserCtrl extends CI_Controller {
 
 		// return $response;
 	}	
+
+	// operation validation du formulaire de connexion
+	public function inscription_validation_request()
+	{
+		// lname validation
+		$this->form_validation->set_rules('prenoms', 'Prenoms', 'required|min_length[3]',
+			array(
+				'required' => 'le champ %s est obligatoire.',
+				'min_length'=> 'le champ %s doit contenir plus de 3 caractères',
+			)
+		);
+
+		// fname validation
+		$this->form_validation->set_rules('nom', 'Nom', 'required|min_length[3]',
+			array(
+				'required' => 'le champ %s est obligatoire.',
+				'min_length'=> 'le champ %s doit contenir plus de 3 caractères',
+			)
+		);
+
+		// email validation
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|differs[login]',
+			array(
+				'required' => 'le champ %s est obligatoire.',
+				'differs'=>'le champ %s ne doit pas être identique au champ email',
+				'valid_email'=> 'le champ %s n\'est pas une adresse mail valide',
+			)
+		);
+
+		// login validation
+		$this->form_validation->set_rules('date_nais', 'Date de naissance', 'required',
+			array(
+				'required' => 'le champ %s est obligatoire.',
+			)
+		);
+		// login validation
+		$this->form_validation->set_rules('adresse', 'Date de naissance', 'required',
+			array(
+				'required' => 'le champ %s est obligatoire.',
+			)
+		);
+
+		// phone validation
+		$this->form_validation->set_rules('phone', 'Phone', 'required|min_length[8]|trim|numeric',
+			array(
+				'required' => 'le champ %s est obligatoire.',
+				'min_length'=> 'le champ %s est inférieur à 8 caractères',
+				'numeric'=> 'le champ %s ne doit contenir que des chiffres',
+			)
+		);
+
+
+		// password validation
+		// $this->form_validation->set_rules('password', 'Password', 'required|min_length[8]|trim|alpha_numeric',
+		// 		array(
+		// 			'required' => 'le champ %s est obligatoire.',
+		// 			'min_length'=> 'le champ %s est inférieur à 8 caractères',
+		// 			'alpha_numeric'=> 'le champ %s doit contenir que des chiffres et des lettres',
+		// 		)
+		// );
+
+		
+
+		// $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
+		// $this->form_validation->set_rules('email', 'Email', 'required');
+	}
+
+	
 
 }

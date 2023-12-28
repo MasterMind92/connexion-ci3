@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <?php $this->load->view('partials/admin/header')?>
 
-            <div class="row justify-content-center align-items-center" style="height:70vh">
+            <div class="row justify-content-center py-5" >
                 <div class="col-12 col-md-10 col-lg-8">
                     <?php if( $this->session->flashdata('msg')):?>
                     <div class="alert alert-info text-center" role="alert">
@@ -27,7 +27,7 @@
                     <form action="<?php echo site_url('userctrl/bulk_add'); ?>" id="import-form" method="post" enctype="multipart/form-data" ></form>
                     <?php #echo form_open('userctrl/bulk_add'); ?>
                         <div class="form-group">
-                            <h1 class="text-center">Ajouter un lot d'utilisateur</h1>
+                            <h1 class="text-center py-5">Ajouter un lot d'utilisateur</h1>
                         </div>
                         <div class="form-group row">
                             <div class="col">
@@ -95,4 +95,5 @@
     </div>
 </div>
 
+<?php $this->load->view('partials/footer');?>
 <?php $this->load->view('partials/foot');?>
