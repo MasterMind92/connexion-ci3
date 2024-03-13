@@ -43,6 +43,23 @@ class User_model extends CI_Model {
         return $this->db->insert('users');
     }
 
+    public function add_bulk($array)
+    {   
+        $this->db->set('lname', $array[0]);
+        $this->db->set('fname', $array[1]);
+        $this->db->set('phone', $array[2]);
+        $this->db->set('login', $array[3]);
+        $this->db->set('email', $array[4]);
+        $this->db->set('pass', sha1($array[5]));
+        $this->db->set('role', "standard");
+        $this->db->set('etat_user   ', 'I');
+        $this->db->set('date_exp', date('Y-m-d h:i:s',strtotime('+90 days')));
+        $this->db->set('created_at', date('Y-m-d h:i:s'));
+        $this->db->set('updated_at', date('Y-m-d h:i:s'));
+
+        return $this->db->insert('users');
+    }
+
     public function add_inscription($array)
     {   
         $this->db->set('nom', $array['nom']);

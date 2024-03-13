@@ -9,6 +9,43 @@ function load($path){
 }
 
 
+// fonction de lecture du fichier
+// retourne un json
+function read_to_json($path)
+{
+    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+    $reader->setReadDataOnly(true);
+    $spreadsheet = $reader->load($path);
+
+    $worksheet = $spreadsheet->getActiveSheet();
+    $rows = $worksheet->toArray();
+
+    // supprimer les entetes
+    array_shift($rows);
+
+    // affichage de la response
+    echo json_encode($response);
+}
+
+// fonction de lecture du fichier excel
+// retourne un tableau
+function read_to_register($path)
+{
+    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+    $reader->setReadDataOnly(true);
+    $spreadsheet = $reader->load($path);
+
+    $worksheet = $spreadsheet->getActiveSheet();
+    $rows = $worksheet->toArray();
+
+    // supprimer les entetes
+    array_shift($rows);
+
+    // affichage de la response
+    return $rows;
+}
+
+
 /**
  * Fonction permettant de colorier un ensemble de cellules
  *

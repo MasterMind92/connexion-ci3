@@ -43,23 +43,44 @@ $('#with-input').on('click', function() {
 
 
 // initialisation du datatable use
-$("#user_table").DataTable();
+// $("#user_table").DataTable();
 
-// declaration formulaire
-const formId = document.getElementById("import-form") ;
-const formObj = new FormData(formId);
 
+
+// var fileInputElement = formId.files[0];
+
+
+
+// formData.append("username", "Groucho");
+// formData.append("accountnum", 123456); 
+
+// HTML file input, chosen by user
+// formData.append("userfile", fileInputElement.files[0]);
 // soumettre le formulaire a l'operation d'affichage
 // mise en place des options
-var options = {
-    type: "POST",
-    url: "/UserCtrl/read_file",
-    data: formObj,
-    dataType: "json",
-    success: function (response) {
-        console.log(response);
+var btn_preview = $("#show_file");
+
+btn_preview.click(function (e){
+    // declaration formulaire
+    var formId = document.getElementById("import-form") ;
+    var formObj = new FormData(formId);
+    // console.log($(this));
+    console.log(formObj);
+
+    var options = {
+        type: "POST",
+        url: "/index.php/userctrl/read_file",
+        data: formObj,
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        success: function (response) {
+            console.log(response);
+        }
     }
-}
+
+    $.ajax(options);
+});
 
 // execution requete
-$.ajax(options);
+// 

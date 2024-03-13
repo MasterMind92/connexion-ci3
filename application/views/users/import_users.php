@@ -24,15 +24,15 @@
                         <!-- <a href="#" class="btn btn-primary" type="button">Text</a> -->
                     </div>
                     
-                    <form action="<?php echo site_url('userctrl/bulk_add'); ?>" id="import-form" method="post" enctype="multipart/form-data" ></form>
-                    <?php #echo form_open('userctrl/bulk_add'); ?>
+                    <form id="import-form" action="<?php echo site_url('userctrl/bulk_add'); ?>" method="post" enctype="multipart/form-data" >
+                    <?php #echo form_open('userctrl/import'); ?>
                         <div class="form-group">
                             <h1 class="text-center py-5">Ajouter un lot d'utilisateur</h1>
                         </div>
                         <div class="form-group row">
                             <div class="col">
                                 <label for="nom_file">Libellé fichier</label>
-                                <input type="text" name="nom_file" id="nom_file-input" class="form-control"  value="<?php echo set_value(''); ?>" placeholder="Entrez le libellé du fichier" >
+                                <input type="text" name="filename" id="filename-input" class="form-control"  value="<?php echo set_value(''); ?>" placeholder="Entrez le libellé du fichier" >
                                 <!-- <small id="helpId" class="text-muted">Help text</small> -->
                             </div>
                             <div class="col">
@@ -42,11 +42,11 @@
                             </div>
                             <div class="col">
                                 <label for="file">&nbsp;</label>
-                                <button type="button" class="btn btn-primary btn-block" title="Afficher contenu du fichier importé sans valider">Preview</button>
+                                <button type="button" id="show_file" class="btn btn-primary btn-block" title="Afficher contenu du fichier importé sans valider">Preview</button>
                             </div>
                             <div class="col">
                                 <label for="file">&nbsp;</label>
-                                <button type="button" class="btn btn-success btn-block"> Valider</button>
+                                <button type="submit" class="btn btn-success btn-block"> Valider</button>
                             </div>
                         </div>
 

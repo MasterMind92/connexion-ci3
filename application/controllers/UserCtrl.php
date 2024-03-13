@@ -129,6 +129,9 @@ class UserCtrl extends CI_Controller {
 
 	// vue d'import utilisateur
 	public function import() : void {
+
+		
+
 		$config['upload_path']          = './uploads/';
 		$config['allowed_types']        = 'gif|jpg|png';
 		$config['max_size']             = 100;
@@ -147,17 +150,70 @@ class UserCtrl extends CI_Controller {
 				// $this->load->view('upload_form', $error);
 		}
 		else
-		{
-				$data = array('upload_data' => $this->upload->data());
+		{		
+			
+			$data = array('upload_data' => $this->upload->data());
 
-				$this->session->set_flashdata('msg',"Fichier enregistré avec succès");
-				// affichage formulaire d'import
-				$this->load->view('users/import_users',$data);
+			$this->session->set_flashdata('msg',"Fichier enregistré avec succès");
+			// affichage formulaire d'import
+			$this->load->view('users/import_users',$data);
 
-				// $this->load->view('upload_success', $data);
+			// $this->load->view('upload_success', $data);
 		}
 
 	}
+
+	// operation de lecture du fichier
+	public function bulk_add(){
+
+		// lire fiche excel pour enregistrer les transactions en BD
+		// lien de recuperation des fichier uploader pour operation
+		// $path = FCPATH."docs/".$array['filename'];
+
+		// var_dump($_POST,$_FILES);
+
+		$path = $_FILES['userfile']['tmp_name'];
+
+		// conversion du fichier excel en un tableau exploitable
+		$list_trans = $this->excel->read_to_register($path);
+
+		// var_dump($list_trans);
+		
+		// initialisation d'une liste de reponse
+		$add_response = array();
+		// operation d'insertion dans la base de données
+		for ($i=0; $i < count($list_trans); $i++) { 
+			$element = $list_trans[$i];
+
+			if (!empty($element[0]) &&  !empty($element[1]) && !empty($element[2]) && !empty($element[3]) && !empty($element[4]) && !empty($element[5])) {
+				$add_response[] = $this->user->add_bulk($element);
+			}
+
+		}
+
+		// retour reponse 
+		//  var_dump($add_response);
+
+		//  retour du rapport
+		 $rapport = [
+			'status' => true,
+			'message'=> "Insertion effectuee avec succès",
+			'nb' => count($add_response)
+		];
+	}
+
+	public function read_file(){
+		$path = $_FILES['userfile']['tmp_name'];
+
+        var_dump($_POST,$_FILES,$path);
+        exit();
+
+		// conversion du fichier excel en un tableau exploitable
+		// $list_trans = $this->excel->read_to_register($path);
+
+		// echo json_encode($list_trans);
+	}
+
 
 	// operation de recuperation des donnees 
 	public function json_response() 
@@ -196,8 +252,6 @@ class UserCtrl extends CI_Controller {
 	public function modify($id)
 	{	
 		$user = $this->user->get_user_by_id($id);
-
-		// var_dump($user);
 
 		$this->user_validation_request();
 

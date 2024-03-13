@@ -54,7 +54,7 @@ class Welcome extends CI_Controller {
 			$mail = $this->load->view('docs/mail-contact-text',"",true);
 			// $mail = "mail de prise de contact";
 
-			var_dump($mail);exit();
+			// var_dump($mail);exit();
 			// envoyer le mail
 			$response = mailjet("dalomarc92@gmail.com","Prise de contact",$mail,"MAD Dev");
 
