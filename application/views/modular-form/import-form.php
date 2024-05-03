@@ -43,8 +43,8 @@
             </div>
 
         </form>
-        <div id="preview-table">
-            <table class="table table-light">
+        <div>
+            <table id="data-preview" class="table table-light">
                 <thead class="thead-light">
                     <tr>
                         <th>Nom</th>
@@ -55,7 +55,7 @@
                         <th>Password</th>
                     </tr>
                 </thead>
-                <tbody id="data-preview">
+                <tbody >
                     <tr>
                         <td>Dalo</td>
                         <td>Marc</td>

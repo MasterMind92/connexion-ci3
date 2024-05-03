@@ -22,22 +22,57 @@ class UserCtrl extends CI_Controller {
 	function __construct()
 	{	
 		parent::__construct();
-		$this->load->helper(array('form', 'url'));
+		$this->load->helper(array('form', 'url','connexion'));
 		$this->load->library(array('form_validation','Excel'));
 		$this->load->model('User_model','user');
 	}
 
 	public function index()
 	{	
+        // verification de l'utilisateur bien logguer
+        user_logged();
+        // recuperation de tous les utilisateurs
 		$users = $this->user->get_all_users();
 
-		$this->load->view('users/index',['users'=>$users,'submit_link'=>"Userctrl/search"]);
+        // liste des parametres de la vue index
+        $view_data = [
+            "table_head"=>["ID","Nom","Prenoms","Email","Date de creation","Etat","Action"],
+            "link_list"=>"",
+        ];
+
+        // affichage de la vue index
+		$this->load->view('users/index',['users'=>$users,'submit_link'=>"Userctrl/search","data"=>$view_data]);
 		
 	}
+
+    // page de recherche
+    // permettre la recherche des element
+    // en fonction de leur date de creation
+    // et de leur different etats
+    public function search(){
+        // verification de l'utilisateur bien logguer
+        user_logged();
+
+        // recuperation des parametres
+        $date_deb = $this->input->post("date_deb");
+        $date_fin = $this->input->post("date_fin");
+
+        // sauvegarde des donnees de recherche en session
+        $this->session->set_userdata("search",['date_deb'=>$date_deb,'date_fin'=>$date_fin,]);
+        // recuperation de tous les utilisateurs
+		// $users = $this->user->get_all_users();
+		$users = $this->user->search_users($date_deb,$date_fin);
+        // affichage de la vue index
+		$this->load->view('users/index',['users'=>$users,'submit_link'=>"Userctrl/search"]);
+
+    }
 
 	// vue de reinitialisation de l'utilisateur
 	public function add()
 	{	
+        // verification de l'utilisateur bien logguer
+        user_logged();
+
 		$this->user_validation_request();
 
 		 // si la validation ne se passe pas bien
@@ -85,6 +120,9 @@ class UserCtrl extends CI_Controller {
 	// vue de reinitialisation de l'utilisateur
 	public function inscription()
 	{	
+        // verification de l'utilisateur bien logguer
+        user_logged();
+
 		$this->inscription_validation_request();
 
 		 // si la validation ne se passe pas bien
@@ -130,8 +168,6 @@ class UserCtrl extends CI_Controller {
 	// vue d'import utilisateur
 	public function import() : void {
 
-		
-
 		$config['upload_path']          = './uploads/';
 		$config['allowed_types']        = 'gif|jpg|png';
 		$config['max_size']             = 100;
@@ -147,7 +183,6 @@ class UserCtrl extends CI_Controller {
 				// affichage formulaire d'import
 				$this->load->view('users/import_users',$error);
 
-				// $this->load->view('upload_form', $error);
 		}
 		else
 		{		
@@ -170,15 +205,10 @@ class UserCtrl extends CI_Controller {
 		// lien de recuperation des fichier uploader pour operation
 		// $path = FCPATH."docs/".$array['filename'];
 
-		// var_dump($_POST,$_FILES);
-
 		$path = $_FILES['userfile']['tmp_name'];
-
 		// conversion du fichier excel en un tableau exploitable
 		$list_trans = $this->excel->read_to_register($path);
 
-		// var_dump($list_trans);
-		
 		// initialisation d'une liste de reponse
 		$add_response = array();
 		// operation d'insertion dans la base de données
@@ -191,9 +221,6 @@ class UserCtrl extends CI_Controller {
 
 		}
 
-		// retour reponse 
-		//  var_dump($add_response);
-
 		//  retour du rapport
 		 $rapport = [
 			'status' => true,
@@ -205,13 +232,13 @@ class UserCtrl extends CI_Controller {
 	public function read_file(){
 		$path = $_FILES['userfile']['tmp_name'];
 
-        var_dump($_POST,$_FILES,$path);
-        exit();
+        // var_dump($_POST,$_FILES,$path);
+        // exit();
 
 		// conversion du fichier excel en un tableau exploitable
-		// $list_trans = $this->excel->read_to_register($path);
+		$list_trans = $this->excel->read_to_register($path);
 
-		// echo json_encode($list_trans);
+		echo json_encode($list_trans);
 	}
 
 
@@ -245,12 +272,16 @@ class UserCtrl extends CI_Controller {
             "recordsFiltered" => intval($totalFiltered),
             "data"            => $data
         );
+
         echo json_encode($json_data);	
 	}
 
 	// vue d'ajout d'un utilisateur
 	public function modify($id)
 	{	
+        // verification de l'utilisateur bien logguer
+        user_logged();
+
 		$user = $this->user->get_user_by_id($id);
 
 		$this->user_validation_request();
@@ -265,7 +296,6 @@ class UserCtrl extends CI_Controller {
 		// si la validation se passe bien
 		else
 		{	
-			// var_dump($_POST);
 			// demander si l'utilisateur existe
 			// demander si c'est le bon login + mot de passe
 			$data = [
@@ -414,7 +444,10 @@ class UserCtrl extends CI_Controller {
 	// operation de suppression d'un utilisateur
 	public function delete($id)
 	{
-		$response =  $this->user->delete_soft($id);
+		// verification de l'utilisateur bien logguer
+        user_logged();
+
+        $response =  $this->user->delete_soft($id);
 
 		$this->session->set_flashdata('msg', 'Utilisateur activé avec succès');
 
@@ -426,7 +459,10 @@ class UserCtrl extends CI_Controller {
 	// operation de mise a jour
 	public function activate_user($id)
 	{
-		$response = $this->user->set_state($id, 'A');
+		// verification de l'utilisateur bien logguer
+        user_logged();
+
+        $response = $this->user->set_state($id, 'A');
 
 		$this->session->set_flashdata('msg', 'Utilisateur activé avec succès');
 
@@ -436,7 +472,10 @@ class UserCtrl extends CI_Controller {
 
 	// operation de mise a jour
 	public function deactivate_user($id)
-	{
+	{   
+        // verification de l'utilisateur bien logguer
+        user_logged();
+
 		$response = $this->user->set_state($id, 'I');
 
 		$this->session->set_flashdata('msg', 'Utilisateur désactivé avec succès');
@@ -448,7 +487,10 @@ class UserCtrl extends CI_Controller {
 
 	// operation de mise a jour
 	public function bloc_user($id)
-	{
+	{   
+        // verification de l'utilisateur bien logguer
+        user_logged();
+
 		$response = $this->user->set_state($id, 'B');
 
 		$this->session->set_flashdata('msg', 'Utilisateur bloqué avec succès');
@@ -525,5 +567,8 @@ class UserCtrl extends CI_Controller {
 	}
 
 	
-
+    public function logout(){
+        // function de deconnexion
+        deconnexion();
+    }
 }

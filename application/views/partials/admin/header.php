@@ -25,7 +25,7 @@
                         <a class="dropdown-item" href="#tab2Id">Paramètres</a>
                         <!-- <a class="dropdown-item" href="#tab3Id"></a> -->
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#tab4Id">Déconnexion</a>
+                        <a class="dropdown-item" href="<?php echo site_url("ConnexionCtrl/logout")?>">Déconnexion</a>
                     </div>
                 </li>
             </ul>

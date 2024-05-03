@@ -23,6 +23,7 @@ class Welcome extends CI_Controller {
 	{	
 		parent::__construct();
 		$this->load->helper(array('form', 'url','notif'));
+        $this->load->helper(array('form', 'url','connexion'));
 		// $this->load->library(array('form_validation','Excel'));
 		// $this->load->model('User_model','user');
 	}
@@ -30,6 +31,7 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{	
+        user_logged();
 		// execution de la validation du formulaire
 		$this->contact_form_validation_request();
 		// si la validation ne se passe pas bien

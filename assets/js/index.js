@@ -2,7 +2,8 @@ console.log("index script ok");
 
 // demande de confirmation
 // si c'est ok 
-// rediriger vers la fonction de suppression
+
+var table = $('#user_table').DataTable({});
 
 var btn_delete = $("#delete_user");
 
@@ -45,11 +46,7 @@ $('#with-input').on('click', function() {
 // initialisation du datatable use
 // $("#user_table").DataTable();
 
-
-
 // var fileInputElement = formId.files[0];
-
-
 
 // formData.append("username", "Groucho");
 // formData.append("accountnum", 123456); 
@@ -68,6 +65,9 @@ btn_preview.click(function (e){
     console.log(formObj);
 
     var options = {
+        headers: {
+            'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content')
+        },
         type: "POST",
         url: "/index.php/userctrl/read_file",
         data: formObj,
@@ -83,4 +83,7 @@ btn_preview.click(function (e){
 });
 
 // execution requete
-// 
+$("#data-preview").DataTable({
+    responsive:true
+})
+// let table = new DataTable('#data-preview');

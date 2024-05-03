@@ -1,3 +1,5 @@
+<?php $this->load->view('partials/head');?>
+<?php $this->load->view('partials/admin/sidebar');?>    
 <div id="main">
     <div class="wrapper">
         <div class="container-fluid">
@@ -122,3 +124,6 @@
     </div>
 
 </div>
+
+<?php $this->load->view('partials/footer');?>
+<?php $this->load->view('partials/foot');?>

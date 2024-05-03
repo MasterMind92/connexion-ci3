@@ -6,7 +6,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // Exemple d'inclusion d'un controller dans un autre 
 // class Mycontroller extends Controller1 {
-
 //     public function __construct() {
 //         parent::__construct();
 //     }
@@ -23,8 +22,16 @@ class ConnexionCtrl extends CI_Controller {
 	}
 
 	public function index()
-	{
-		
+	{   
+
+        // $csrf = array(
+        //     'name' => $this->security->get_csrf_token_name(),
+        //     'hash' => $this->security->get_csrf_hash()
+        // );
+        // ['csrf'=>$csrf]
+
+        
+
 		// execution fonction de validation
 		$this->login_form_validation_request();
 
@@ -38,7 +45,6 @@ class ConnexionCtrl extends CI_Controller {
 		// si la validation se passe bien
 		else
 		{	
-			// var_dump($_POST);
 			// demander si l'utilisateur existe
 			// demander si c'est le bon login + mot de passe
 			$login = $this->input->post('login');
@@ -46,7 +52,6 @@ class ConnexionCtrl extends CI_Controller {
 
 			$user = $this->user->connect_user($login,$mdp);
 
-			// var_dump($user==NULL,sha1($mdp));
 			// si l'utilisateur est vide
 			if ($user == NULL) {
 
@@ -93,7 +98,13 @@ class ConnexionCtrl extends CI_Controller {
 
 	// vue de reinitialisation de l'utilisateur
 	public function add_user()
-	{
+	{   
+        // $csrf = array(
+        //     'name' => $this->security->get_csrf_token_name(),
+        //     'hash' => $this->security->get_csrf_hash()
+        // );
+        // ['csrf'=>$csrf]
+
 		$this->load->view('connexion/inscription');
 	}
 	
@@ -120,10 +131,11 @@ class ConnexionCtrl extends CI_Controller {
 
 	
 
-	// public function redirect()
-	// {
-	// 	$this->load->view('welcome_message');
-	// }
+	public function logout()
+	{   
+        // fonction de deconnexion
+    	deconnexion();
+	}
 
 
 }

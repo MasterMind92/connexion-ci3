@@ -24,8 +24,9 @@
                         <!-- <a href="#" class="btn btn-primary" type="button">Text</a> -->
                     </div>
                     
-                    <form id="import-form" action="<?php echo site_url('userctrl/bulk_add'); ?>" method="post" enctype="multipart/form-data" >
-                    <?php #echo form_open('userctrl/import'); ?>
+                    <?php #form_open("userctrl/bulk_add");?>
+                    <!-- <form id="import-form" action="<?php echo site_url(''); ?>" method="post" enctype="multipart/form-data" > -->
+                    <?php echo form_open('userctrl/bulk_add'); ?>
                         <div class="form-group">
                             <h1 class="text-center py-5">Ajouter un lot d'utilisateur</h1>
                         </div>
@@ -52,7 +53,7 @@
 
                     </form>
                     <div id="preview-table">
-                        <table class="table table-light">
+                        <table  id="data-preview" class="table table-light">
                             <thead class="thead-light">
                                 <tr>
                                     <th>Nom</th>
@@ -63,7 +64,7 @@
                                     <th>Password</th>
                                 </tr>
                             </thead>
-                            <tbody id="data-preview">
+                            <tbody >
                                 <tr>
                                     <td>Dalo</td>
                                     <td>Marc</td>

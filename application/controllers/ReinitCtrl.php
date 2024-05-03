@@ -37,8 +37,6 @@ class ReinitCtrl extends CI_Controller {
 		// verification de la date d'expiration du token
 		$check_token_date_exp = $this->token->check_exp_date($token);
 
-		// var_dump($verify_token_response,empty($check_token_date_exp));exit();
-
 		// condition d'existence du token
 		$condition_token_existe = $verify_token_response != FALSE;
 		// condition verification date d'expiration du token
@@ -48,15 +46,12 @@ class ReinitCtrl extends CI_Controller {
 		if ($condition_token_existe AND $condition_token_expire) {
 			// recuperation de l'utilisateur via le token
 			$user = $this->token->get_user_by_token($token);
-			// var_dump($user);
-			// exit();
+			
 			// changer l'etat du token a utilisé
 			// $change_state_response = $this->token->set_used_token($token);
 
 			if (!empty($user)) {
 
-				// $this->send_reinit_mail();
-				// exit();
 				// affichage du formulaire de reinitialisation
 				$this->load->view('connexion/reinitialisation',['user'=>$user[0]]);
 
@@ -83,8 +78,6 @@ class ReinitCtrl extends CI_Controller {
 		// récupération de l'utilisateur
 		$user = $this->user->getUserByEmail($email);
 
-		// var_dump($user);
-		// exit();
 		// si l'utilisateur existe 
 		if (!empty($user)) {
 			// ajout du token
@@ -95,8 +88,7 @@ class ReinitCtrl extends CI_Controller {
 			$mail_response = mailjet($user->email, "Réinitialisation mot de passe", $message,"MAD Admin");
 		}
 
-		// var_dump($mail_response);
-		// exit();
+		
 		// else{
 		// 	$this->session->set_flashdata('msg','Vérifiez votre boite e-mail');
 		// }

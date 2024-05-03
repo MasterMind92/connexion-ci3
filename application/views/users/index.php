@@ -30,13 +30,25 @@
                     <table id="user_table" class="table table-striped">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Nom</th>
-                                <th>Prenoms</th>
-                                <th>Email</th>
-                                <th>Etat</th>
-                                <th>Action</th>
+                            <?php 
+                                if ($data['table_head'] == NULL):
+                            ?>
+                                <th>colonne 1</th>
+                                <th>colonne 2</th>
+                                <th>colonne 3</th>
+                                <th>colonne 4</th>
+                                <th>colonne 5</th>
+                                <th>colonne 6</th>
+                                <th>colonne 7</th>
+                            <?php else: ?>
+
+                                <?php for ($i=0; $i < count($data['table_head']); $i++):?>
+                                    <th><?php echo $data['table_head'][$i];?></th>
+                                <?php endfor;?>
+                                   
+                            <?php endif; ?>        
                             </tr>
+                            
                         </thead>
                         <tbody>
                             <?php foreach ($users as $key => $value):?>
@@ -46,6 +58,7 @@
                                 <td> <?php echo $value->lname;?> </td>
                                 <td> <?php echo $value->fname;?> </td>
                                 <td> <?php echo $value->email;?></td>
+                                <td> <?php echo $value->created_at;?></td>
                                 <?php 
                                     $libelle = [
                                         "lib"=> "",
@@ -54,7 +67,6 @@
 
                                     ];
                                 
-
                                     switch ($value->etat_user) {
                                         case 'A':
                                             $libelle['lib']="Actif";
@@ -131,4 +143,5 @@
     </div>
 </div>
 
+<?php $this->load->view('partials/footer');?>
 <?php $this->load->view('partials/foot');?>

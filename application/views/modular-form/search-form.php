@@ -1,14 +1,15 @@
+<?php $search = $this->session->userdata('search');?>
 <form method="post" action="<?php echo site_url($submit_link);?>" class="">
     <div class="form-group row">
         <!-- debut affichage par defaut -->
         <div class="col-12 col-md-4 col-lg-auto">
             <label class="mb-0" for="">Date de début</label>
-            <input type="date" class="form-control" name="date_deb" id="date_deb" placeholder="">
+            <input type="date" class="form-control" name="date_deb" id="date_deb" placeholder="" value="<?php if($search != NULL ) echo $search['date_deb'];?>" >
             <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
         </div>
         <div class="col-12 col-md-4 col-lg-auto">
             <label class="mb-0" for="">Date de fin</label>
-            <input type="date" class="form-control" name="date_fin" id="date_fin" placeholder="">
+            <input type="date" class="form-control" name="date_fin" id="date_fin" placeholder="" value="<?php if($search != NULL ) echo $search['date_fin'];?>">
             <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
         </div>
         <!-- fin affichage par defaut -->
