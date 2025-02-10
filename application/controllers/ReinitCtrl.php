@@ -30,6 +30,19 @@ class ReinitCtrl extends CI_Controller {
 		$this->load->view('connexion/send_reinit_mail');
 	}
 
+	// function de validation de l'operation
+	public function reinit_pass(){
+
+		// recuperation des infos utilisateur
+		// recuperation email
+		// recuperation nouveau mot de passe
+		// recherche de l'utilisateur et mise a jour du mot de passe en BD
+		// si la transaction se passe bien 
+		// 	rediriger vers la page de connexion avec un message de succes
+	}
+
+
+	// formulaire de reinitialisation du mot de passe
 	public function reinit_form($token){
 
 		// recuperation de la reponse de verification du token utilisé
@@ -83,7 +96,7 @@ class ReinitCtrl extends CI_Controller {
 			// ajout du token
 			$insert_response = $this->token->add_token(['token'=>$token,'id'=>$user->id_user]);
 			// mise en place du mail de reinitialisation
-			$message = "Cliquez sur le lien pour réinitialiser vos accès \n ".base_url()."index.php/ReinitCtrl".$lien;
+			$message = "Cliquez sur le lien pour réinitialiser vos accès \n ".base_url()."index.php/ReinitCtrl/".$lien;
 			// envoi du mail
 			$mail_response = mailjet($user->email, "Réinitialisation mot de passe", $message,"MAD Admin");
 		}
