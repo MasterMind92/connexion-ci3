@@ -11,3 +11,5 @@ ALTER TABLE `users` CHANGE `telepphone` `phone` VARCHAR(255) CHARACTER SET utf8 
 ALTER TABLE `users` CHANGE `password` `pass` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL;
 
 ALTER TABLE `users` ADD `role` ENUM('admin','standard') NULL DEFAULT NULL AFTER `etat_user`;
+
+ALTER TABLE `users` ADD `nbre_tentative` TINYINT(1) NOT NULL DEFAULT '3' COMMENT 'nombre de tentative de l\'utilisateur' AFTER `role`; 
