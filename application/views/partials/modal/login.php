@@ -28,7 +28,20 @@
                             <!-- White Container -->
                             <div class="container bg-white rounded mt-2 mb-2 px-0">
                                 <div class="pt-3 pb-3">
-                                    <form class="form-horizontal">
+                                    <form action="#" id="login-form" method="post">
+
+                                        <?php if( $this->session->flashdata('msg')):?>
+                                        <div class="alert alert-warning" role="alert">
+                                            <?php echo $this->session->flashdata('msg'); ?>
+                                        </div>
+                                        <?php endif;?>
+
+                                        <?php if(!empty(validation_errors())):?>
+                                        <div class="alert alert-warning" role="alert">
+                                            <?php echo validation_errors(); ?>
+                                        </div>
+                                        <?php endif;?>
+                                        <input type="hidden" name="interface" value="shop_login">
                                         <!-- User Name Input -->
                                         <div class="form-group row justify-content-center px-3">
                                             <div class="col-10 px-0"> 
@@ -36,9 +49,8 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="my-addon"> <i class="fa fa-user" aria-hidden="true"></i></span>
                                                     </div>
-                                                    <input class="form-control border-primary" type="text" name="text" placeholder="Votre Adresse E-mail">
+                                                    <input class="form-control border-primary" id="login-input" type="text" name="login" placeholder="Votre Adresse E-mail">
                                                 </div>
-                                               
                                              </div>
                                         </div> <!-- Password Input -->
                                         <div class="form-group row justify-content-center px-3">
@@ -47,7 +59,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="my-addon"> <i class="fa fa-key" aria-hidden="true"></i></span>
                                                     </div>
-                                                    <input class="form-control border-primary" type="password" name="password" placeholder="Votre Mot de Passe">
+                                                    <input class="form-control border-primary" type="password" id="password-input" name="password" placeholder="Votre Mot de Passe">
                                                 </div>
                                             </div>
                                         </div> <!-- CheckBox Remember Me-->
@@ -68,8 +80,7 @@
                                     <div class="row justify-content-center">
                                         <h5>Pas de Compte ?<span><a data-toggle="modal" data-target="#register" data-dismiss="modal" class="text-danger"> Inscrivez-vous!</a></span></h5>
                                     </div>
-                                </div> 
-                                
+                                </div>
                             </div>
                         </div>
                     </div>

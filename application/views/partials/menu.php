@@ -11,8 +11,12 @@
                 </ul>
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item">
+                        <?php if($login):?>
+                            <a class="nav-link" href="#" data-toggle="modal" data-target="#login"><span><i class="fa fa-user"></i></span> Connexion </a>
+                        <?php else:?>
+                            <a class="nav-link" href="#" data-toggle="modal" data-target="#login"><span><i class="fa fa-user"></i></span> Connexion </a>
+                        <?php endif;?>
                         <!-- Button trigger login modal -->
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#login"><span><i class="fa fa-user"></i></span> Connexion </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"  href="<?php echo site_url('ShopCtrl/panier');?>"><span><i class="fa fa-shopping-cart"></i></span> Panier <span class="text-info">(1)</span> </a>

@@ -1,5 +1,40 @@
 console.log("index script ok");
 
+// script de connexion
+
+// declaration formulaire
+var formId = document.getElementById("login-form") ;
+var formObj = new FormData(formId);
+// console.log($(this));
+console.log(formObj);
+
+
+
+$(formId).submit(function (e) { 
+    e.preventDefault();
+    // definition des options d'execution
+    var options = {
+        headers: {
+            'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content')
+        },
+        type: "POST",
+        url: "/index.php/ShopCtrl/connexion",
+        data: formObj,
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        success: function (response) {
+            console.log(response);
+        }
+    }
+    
+    $.ajax(options);
+});
+
+
+
+
+
 // demande de confirmation
 // si c'est ok 
 

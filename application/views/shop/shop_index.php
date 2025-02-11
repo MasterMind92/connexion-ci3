@@ -190,4 +190,4 @@
     </div>
 
     <?php $this->load->view('partials/footer-shop');?>
-    <?php $this->load->view('partials/foot');?>
+    <?php $this->load->view('shop/partials_for_review/foot');?>
