@@ -35,10 +35,23 @@ class ReinitCtrl extends CI_Controller {
 
 		// recuperation des infos utilisateur
 		// recuperation email
+        $login = $this->input->post('login');
 		// recuperation nouveau mot de passe
+        $pass = $this->input->post('password');
 		// recherche de l'utilisateur et mise a jour du mot de passe en BD
 		// si la transaction se passe bien 
-		// 	rediriger vers la page de connexion avec un message de succes
+        $update_response = $this->user->update_password($login,$pass);
+
+        if ($update_response != TRUE) {
+            // rediriger vers la page de reinitialisation 
+            // avec un message d'erreur
+            $this->session->set_flashdata('msg',"");
+        } else {
+            // 	rediriger vers la page de connexion avec un message de succes
+            $this->session->set_flashdata('msg',"");
+
+            redirect('');
+        }
 	}
 
 

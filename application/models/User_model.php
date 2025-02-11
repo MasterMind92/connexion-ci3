@@ -93,6 +93,8 @@ class User_model extends CI_Model {
     }
 
     
+
+    
     /**
      * Rechercher un utilisateur
      *
@@ -175,6 +177,17 @@ class User_model extends CI_Model {
         $query = $this->db->get();
 
         return $query->row();
+    }
+
+    public function update_password($login,$mdp){
+        
+        $this->db->set('pass', $mdp);
+        $this->db->where('email',$login);
+        $this->db->where('etat_user !=','S');
+        $this->db->where('etat_user !=','B');
+
+        return $this->db->update('users');
+
     }
 
 
