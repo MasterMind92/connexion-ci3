@@ -42,16 +42,25 @@ class ReinitCtrl extends CI_Controller {
 		// si la transaction se passe bien 
         $update_response = $this->user->update_password($login,$pass);
 
+        // if (TRUE) {
         if ($update_response != TRUE) {
             // rediriger vers la page de reinitialisation 
             // avec un message d'erreur
-            $this->session->set_flashdata('msg',"");
+            $this->session->set_flashdata('msg',"Une erreur est survenue, veuillez reessayer");
+
+            redirect('ReinitCtrl/');
+
         } else {
             // 	rediriger vers la page de connexion avec un message de succes
-            $this->session->set_flashdata('msg',"");
+            $this->session->set_flashdata('msg',"Succès réinitialisation");
 
-            redirect('');
+            redirect('ConnexionCtrl/');
         }
+
+        // afficher la page d'erreur
+		redirect(404);
+
+        
 	}
 
 
