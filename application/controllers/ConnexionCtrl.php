@@ -18,7 +18,7 @@ class ConnexionCtrl extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('form', 'url','notif','connexion'));
 		$this->load->library('form_validation');
-		$this->load->model('User_model','user');
+		$this->load->model(array('User_model'=>'user','Traces_model'=>'trace'));
 	}
 
 	public function index()
@@ -30,15 +30,24 @@ class ConnexionCtrl extends CI_Controller {
         // );
         // ['csrf'=>$csrf]
 
-        
+        $infos_trace = [
+            "lib_trace"=>"",
+            "url_page"=>"",
+            "page_title"=>"",
+            "lib_trace"=>"",
+            "url_page"=>"",
+            "page_title"=>"",
+            "email_user"=>"",
+        ];
 
 		// execution fonction de validation
 		$this->login_form_validation_request();
 
 		// si la validation ne se passe pas bien
 		if ($this->form_validation->run() == FALSE)
-		{
-			
+		{   
+            
+			$this->trace->add_trace();
 			$this->load->view('connexion/login');
 			
 		}
