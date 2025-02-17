@@ -218,7 +218,6 @@ class UserCtrl extends CI_Controller {
 			if (!empty($element[0]) &&  !empty($element[1]) && !empty($element[2]) && !empty($element[3]) && !empty($element[4]) && !empty($element[5])) {
 				$add_response[] = $this->user->add_bulk($element);
 			}
-
 		}
 
 		//  retour du rapport
@@ -449,7 +448,7 @@ class UserCtrl extends CI_Controller {
 
         $response =  $this->user->delete_soft($id);
 
-		$this->session->set_flashdata('msg', 'Utilisateur activé avec succès');
+		$this->session->set_flashdata('msg', 'Utilisateur supprimé avec succès');
 
 		redirect('userctrl/');
 

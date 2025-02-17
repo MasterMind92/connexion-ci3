@@ -35,10 +35,11 @@ class ConnexionCtrl extends CI_Controller {
             "url_page"=>"",
             "page_title"=>"",
             "lib_trace"=>"",
-            "url_page"=>"",
-            "page_title"=>"",
             "email_user"=>"",
         ];
+
+        $login = $this->input->post('login');
+        $mdp = $this->input->post('password');
 
 		// execution fonction de validation
 		$this->login_form_validation_request();
@@ -47,7 +48,7 @@ class ConnexionCtrl extends CI_Controller {
 		if ($this->form_validation->run() == FALSE)
 		{   
             
-			$this->trace->add_trace();
+			$this->trace->add_trace("CONNEXION","L'utilisateur tente de se connecter avec les parametres suivants: $login ; $mdp");
 			$this->load->view('connexion/login');
 			
 		}
@@ -77,7 +78,8 @@ class ConnexionCtrl extends CI_Controller {
 					// enregistrer l'utilisateur en session puis le rediriger
 					// sur la page d'accueil
 					$this->session->set_userdata(['user'=>$user]);
-					
+                    $this->trace->add_trace("CONNEXION","L'utilisateur $login se connecte avec succès");
+
 					redirect('userctrl/');// reinitialisation
 				}
 

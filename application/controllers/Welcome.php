@@ -111,7 +111,7 @@ class Welcome extends CI_Controller {
 		// $this->load->view('bs3_test');
 		// $files = glob('assets/*');
 
-		$this->load->view('users/add-user-infos');
+		$this->load->view('bs3_test');
 		// var_dump($files);
 	}
 }
